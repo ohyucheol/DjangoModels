@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email
 
 from .forms import SigninForm, SignupForm
 
 def index(request):
+    return render(request, 'DjangoApps/templates/a00/index.html')
+
+def signout(request):
+    logout(request)
     return render(request, 'DjangoApps/templates/a00/index.html')
 
 def signup(request):
