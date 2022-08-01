@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email
 
-from .forms import SigninForm, SignupForm
+from .forms import SigninForm, SignupForm, ChangePasswordForm, ChangeUsernameForm
 
 def index(request):
     return render(request, 'DjangoApps/templates/a00/index.html')
@@ -96,3 +96,71 @@ def signin(request):
     else:
         form = SigninForm()
         return render(request, 'DjangoApps/templates/a00/signin.html', {'form':form})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        
+        if form.is_valid():
+            data = form.cleaned_data
+            if data['password'] != data['password2']:
+                form = ChangePasswordForm()
+                context = {'message':'새로운 비밀번호가 서로 일치하지 않습니다', 'form':form}
+                return render(request, 'DjangoApps/templates/a00/change-password.html', context)
+
+            user = authenticate(request, username=request.user.username, password=data['current_password'])
+            
+            if user is not None:
+                user.set_password(data['password'])
+                user.save() 
+                login(request, user)
+                return redirect('a00:index')
+            else:
+                context = {'message':'현재 비밀번호가 일치하지 않습니다', 'form':form}
+                return render(request, 'DjangoApps/templates/a00/change-password.html', context)
+
+        else:
+            form = ChangePasswordForm()
+            context = {'message':'비밀번호를 입력해주세요', 'form':form}
+            return render(request, 'DjangoApps/templates/a00/change-password.html', context)
+
+    else:
+        form = ChangePasswordForm()
+        return render(request, 'DjangoApps/templates/a00/change-password.html', {'form':form})
+
+
+def change_username(request):
+    if request.method == 'POST':
+        form = ChangeUsernameForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            try:
+                validate_email(data['username'])
+            except: #ValidationError
+                form = ChangeUsernameForm()
+                context = {'message':'이메일 형식이 바르지 않습니다', 'form':form}
+                return render(request, 'DjangoApps/templates/a00/change-username.html', context)
+
+            user = authenticate(request, username=request.user.username, password=data['password'])
+
+            if user is not None:
+                user.username = data['username']
+                user.save()
+                login(request, user)
+                return redirect('a00:index')
+            else:
+                form = ChangeUsernameForm()
+                context = {'message':'비밀번호를 확인해주세요', 'form':form}
+                return render(request, 'DjangoApps/templates/a00/change-username.html', context)
+
+        else:
+            form = ChangeUsernameForm()
+            context = {'message':'비밀번호를 입력해주세요', 'form':form}
+            return render(request, 'DjangoApps/templates/a00/change-username.html', context)
+
+    else:
+        form = ChangeUsernameForm()
+        return render(request, 'DjangoApps/templates/a00/change-username.html', {'form':form})
+
