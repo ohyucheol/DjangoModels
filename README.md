@@ -1,51 +1,43 @@
 # DjangoApps
+데이터 모델과 이들의 상호작용에 관한 유형별 분류, 설계 및 구현
 
-가상환경(venv)활성화(path/venv)
-```bash
-. bin/activate
-```
+## 유형별 분류
+권리의 주체, 객체, 변동을 중심으로 다음 아홉가지의 유형으로 분류하였음.
 
-프로젝트폴더(project) 생성 및 진입(path/to/venv)
-```bash
-mkdir project
-cd project
-```
+### 권리의 주체
 
-장고 프로젝트(main) 생성(path/to/venv/project)
-```bash
-django-admin startproject main .
-```
+#### A 자연인
+일반 이용자, 학생, 강사 등이 이 분류에 속함.
+* A00 일반 이용자
 
-장고 앱 폴더(DjangoApp) 생성 및 진입(path/to/venv/project)
-그리고 패키지로 인식할 수 있도록 __init__.py 생성(path/to/venv/project/DjangoApp)
-```bash
-mkdir project DjangoApp
-cd DjangoApp
-touch __init__.py
-```
+#### B 법인
+법인, 법인 아닌 단체, 조합 등이 이 분류에 속함.
+* B00 일반 사업자
 
-원하는 앱(u01) 생성(path/to/venv/project/DjangoApp)
-```bash	
-python3 ../manage.py startapp u01
-```
+### 권리의 객체
 
-이후 앱의 apps.py에서 앱 이름(name='u01')을 name='DjangoApps.u01'로 변경
-(path/to/venv/project/DjangoApp/u01/apps.py)
-```python
-class U01Config(AppConfig):
-	default_auto_field = 'django.db.models.BigAutoField'
-	name = 'DjangoApps.u01'
-```
+#### C 동산
+도서, 의류, 농수산물, 기계류, 약품류 등이 이 분류에 속함
 
-장고 프로젝트의 settings.py에 INSTALLED_APP 설정(path/to/venv/project/main/settings.py)
-```python
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'DjangoApps.u01.apps.U01Config',
-]
-```
+#### D 부동산
+주택, 사무실, 강의실 등이 이 분류에 속함
+
+#### E 재산권
+사진, 영상, 음악, 웹툰 등이 이 분류에 속함
+
+#### F 인격권
+성명, 주소, 생년월일, 자기소개 등이 이 분류에 속함
+
+#### G 신분권 등
+가족관계, 이사회, 집회 및 시위, 연차휴가 등이 이 분류에 속함
+
+### 권리의 변동
+
+#### H 법률행위
+매매, 임대차, 약관 등이 이 분류에 속함
+
+#### I 사실행위
+날씨정보, 위치정보, 교통사고 등이 이 분류에 속함
+
+#### J 미분류
+
