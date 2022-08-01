@@ -98,6 +98,9 @@ def signin(request):
         return render(request, 'DjangoApps/templates/a00/signin.html', {'form':form})
 
 def change_password(request):
+    if not request.user.is_authenticated:
+        return redirect('a00:signin')
+
     if request.method == 'POST':
         form = ChangePasswordForm(request.POST)
         
@@ -130,6 +133,9 @@ def change_password(request):
 
 
 def change_username(request):
+    if not request.user.is_authenticated:
+        return redirect('a00:signin')
+
     if request.method == 'POST':
         form = ChangeUsernameForm(request.POST)
 
