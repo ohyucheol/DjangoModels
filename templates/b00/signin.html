@@ -1,63 +1,14 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>a00</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
-      body{background-color: rgb(247,247,247); filter:grayscale(100%);}
-      .title{font-family: Cinzel, serif;}
-      .navbar{border-top: 1px solid rgb(215,215,215); border-bottom: 2px solid rgb(0,0,0); white-space:nowrap; overflow: auto; -ms-overflow-style: none;}
-      .navbar::-webkit-scrollbar{display: none;}
-      input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{-webkit-appearance: none; margin: 0;}
-      input[type=number]{-moz-appearance: textfield;}
-    </style>
-  </head>
-  <body>
+{% extends "../base.html" %}
 
-    <div class="container-fluid text-center mt-3">
-      <div class="title fs-1 fw-bold">Django Apps</div>
-    </div>
+{% block title %}로그인{% endblock %}
 
-    <div class="container-fluid mt-1">
-      <nav class="navbar navbar-expand p-1 d-none d-lg-block">
-        <ul class="navbar-nav fw-bold justify-content-center">
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">자연인</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">법인 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">동산</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">부동산</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">재산권</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">인격권</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">신분권 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">법률행위 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">미분류</a></li>
-        </ul>
-      </nav>
-      <nav class="navbar navbar-expand p-1 d-block d-lg-none">
-        <ul class="navbar-nav fw-bold">
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">자연인</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">법인 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">동산</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">부동산</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">재산권</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">인격권</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">신분권 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">법률행위 등</a></li>
-          <li class="nav-item"><a class="nav-link text-dark px-3 py-1" href="#">미분류</a></li>
-        </ul>
-      </nav>
-    </div>
-
+{% block content %}
     <div class="container-fluid mt-5 w-75">
       <h1 class="h1 mb-5 fw-bold text-center">로그인</h1>
       <div class="row m-auto">
         <div class="col-12 col-xl-6 d-none d-lg-block">
           <label class="fs-5 fw-semibold">이용안내</label>
-          <p>저 어둔 밤 하늘에 가득 덮인 먹구름이 밤새 당신 머릴 짓누르고 간 아침 나는 여기 멀리 해가 뜨는 새벽강에 홀로 나와 그 찬물에 얼굴을 씻고 서울이라는 아주 낯선 이름과 또 당신의 이름과 그 텅빈 거릴 생각하오 강가에는 안개가 안개가 가득 피어나오 짙은 안개속으로 새벽강은 흐르고 나는 그 강물에 여윈 내손을 담그고 산과 산들이 얘기하는 나무와 새들이 얘기하는 그 신비한 소릴 들으려 했소 강물 속으론 또 강물이 흐르고 내 맘속엔 또 내가 서로 부딪치며 흘러가고 강가에는 안개가 안개가 또 가득 흘러가오 아주 우울한 나날들이 우리 곁에 오래 머물때 우리 이젠 새벽강을 보러 떠나요 과거로 되돌아가듯 거슬러 올라가면 거기 처음처럼 신선한 새벽이 있소 흘러가도 또 오는 시간과 언제나 새로운 그 강물에 발을 담그면 강가에는 안개가 안개가 천천히 걷힐거요</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu posuere purus. Maecenas suscipit tellus vel aliquet feugiat. Maecenas rhoncus ligula vel ipsum aliquet, at iaculis nulla tempus. Curabitur blandit, mauris id ultrices posuere, nibh est sollicitudin mauris, id tempor tellus nunc a augue. Suspendisse eget malesuada neque, ac porta justo. Mauris quis nulla massa. Nullam feugiat, orci ut vulputate mattis, massa odio ultricies eros, id consectetur justo nisl at lectus. Quisque in vestibulum elit. Suspendisse potenti. Integer maximus mollis fringilla. Ut vel eleifend dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus quam, lobortis nec metus quis, sagittis porta metus.</p>
         </div>
         <div class="col-12 col-xl-6">
           <form action="{% url 'a00:signin' %}" method="POST">
@@ -82,6 +33,4 @@
         </div>
       </div>
     </div>
-
-  </body>
-</html>
+{% endblock %}
