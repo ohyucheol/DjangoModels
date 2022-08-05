@@ -1,0 +1,28 @@
+{% extends "../base.html" %}
+
+{% block title %}B00{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+      <h1 class="h1 fw-bold">D01</h1>
+      <hr/>
+
+      <h2 class="h2">Models</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">Username(Business License Number)</li>
+        <li class="list-group-item">Email(Business License Number)</li>
+        <li class="list-group-item">Password</li>
+      </ul>
+      <!-- <hr/> -->
+
+      <h2 class="h2">Views</h2>
+
+      <h2 class="h2">Status</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">username : {{user.username}}</li>
+        <li class="list-group-item">email : {{user.email}}</li>
+        <li class="list-group-item">password : {{user.password}}</li>
+      </ul>
+
+    </div>
+{% endblock %}
