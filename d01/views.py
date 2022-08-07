@@ -1,9 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from .models import Book, BookMeta, Format, Category
 # Create your views here.
 
 def index(request):
-    return render(request, 'DjangoApps/templates/D01/index.html')
+    # books = Book.objects.all()
+    # formats = Format.objects.all()
 
-class CreateView(CreateView):
-    template_name = 'DjangoApps/templates/D01/index.html'
+    # bookq = Book.objects.select_related('book')
+    books = Book.objects.all().values()
+
+    for b in books:
+        formats = Format.objects.filter(book=b['id'])
+        # for f in formats:
+        #     b['format'] = f
+        b['format'] = formats
+
+    return render(request, 'DjangoApps/templates/D01/index.html', {'books' : books})

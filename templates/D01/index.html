@@ -7,6 +7,16 @@
       <h1 class="h1 fw-bold">D01</h1>
       <hr/>
 
+      {% for b in books %}
+        {{ b.id }}
+        {{ b.title }}
+        {{ b.isbn }}
+        {{ b.thumbnail}}
+          {% for v in b.format %}
+            {{ v.size }}
+          {% endfor %}
+        <br/>
+      {% endfor %}
       <h2 class="h2">Models</h2>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">Username(Business License Number)</li>
