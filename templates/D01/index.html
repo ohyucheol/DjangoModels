@@ -12,8 +12,15 @@
         {{ b.title }}
         {{ b.isbn }}
         {{ b.thumbnail}}
-          {% for v in b.format %}
-            {{ v.size }}
+          {% for f in b.formats %}
+            치수 : {{ f.size }}
+            제본 : {{ f.binding }}
+            페이지 : {{ f.page }}
+          {% endfor %}
+          {% for c in b.categories %}
+            부가기호 : {{ c.k_isbn }}
+            십진분류법 : {{ c.kdc }}
+            듀이분류법 : {{ c.ddc }}
           {% endfor %}
         <br/>
       {% endfor %}
