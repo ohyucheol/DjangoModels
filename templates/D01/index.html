@@ -7,23 +7,6 @@
       <h1 class="h1 fw-bold">D01</h1>
       <hr/>
 
-      {% for b in books %}
-        {{ b.id }}
-        {{ b.title }}
-        {{ b.isbn }}
-        {{ b.thumbnail}}
-          {% for f in b.formats %}
-            치수 : {{ f.size }}
-            제본 : {{ f.binding }}
-            페이지 : {{ f.page }}
-          {% endfor %}
-          {% for c in b.categories %}
-            부가기호 : {{ c.k_isbn }}
-            십진분류법 : {{ c.kdc }}
-            듀이분류법 : {{ c.ddc }}
-          {% endfor %}
-        <br/>
-      {% endfor %}
       <h2 class="h2">Models</h2>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">Username(Business License Number)</li>

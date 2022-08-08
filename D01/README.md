@@ -56,12 +56,7 @@
 * ISBN(isbn / CharField)
 * 검색어(keyword / CharField)
 
-2. 단행본 메타데이터(BookMeta)
-* 단행본ID(book_id / IntegerField)
-* 키(key / CharField)
-* 값(value / CharField)
-
-3. 판형(Format)
+2. 판형(Format)
 * 단행본ID(book_id / IntegerField)
 * 판차(edition / CharField)
 * 쇄차(impression / CharField)
@@ -70,13 +65,13 @@
 * 매수(page / IntegerField)
 * 중량(weight / DecimalField)
 
-4. 내용상의 분류(Category)
+3. 십진분류법 등(DecimalClassification)
 * 단행본ID(book_id / IntegerField)
 * 부가기호(k_isbn / CharField)
 * 한국십진분류법(kdc / CharField)
 * 듀이십진분류법(ddc / CharField)
 
-5. 저자, 편저자, 역자, 출판사
+4. 저자, 편저자, 역자, 출판사
 '사람과 권리' 부분에서 다룬다.
 
 ### 뷰(View)

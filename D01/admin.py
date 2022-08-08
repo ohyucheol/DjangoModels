@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, BookMeta, Format, Category
+from .models import Book, Format, DecimalClassification
 # Register your models here.
 
 class BookAdmin(admin.ModelAdmin):
@@ -7,6 +7,5 @@ class BookAdmin(admin.ModelAdmin):
 	list_display = ['title', 'thumbnail', 'isbn', 'keyword']
 
 admin.site.register(Book, BookAdmin)
-admin.site.register(BookMeta)
 admin.site.register(Format)
-admin.site.register(Category)
+admin.site.register(DecimalClassification)

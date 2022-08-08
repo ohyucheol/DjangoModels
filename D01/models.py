@@ -3,26 +3,21 @@ from django.db import models
 # Create your models here.
 class Book(models.Model):
 	title = models.CharField(max_length=200)
-	thumbnail = models.URLField()
-	isbn = models.CharField(max_length=200)
-	keyword = models.CharField(max_length=200)
-
-class BookMeta(models.Model):
-	book = models.ForeignKey("Book", related_name="meta", on_delete=models.CASCADE)
-	key = models.CharField(max_length=200)
-	value = models.CharField(max_length=200)
+	thumbnail = models.URLField(blank=True)
+	isbn = models.CharField(max_length=200, blank=True)
+	keyword = models.CharField(max_length=200, blank=True)
 
 class Format(models.Model):
-	book = models.ForeignKey("Book", related_name="format", on_delete=models.CASCADE)
-	edition = models.CharField(max_length=200)
-	impression = models.CharField(max_length=200)
-	binding = models.CharField(max_length=200)
-	size = models.CharField(max_length=200)
+	book_id = models.IntegerField()
+	edition = models.CharField(max_length=200,blank=True)
+	impression = models.CharField(max_length=200,blank=True)
+	binding = models.CharField(max_length=200,blank=True)
+	size = models.CharField(max_length=200,blank=True)
 	page = models.IntegerField()
-	weight = models.CharField(max_length=200)
+	weight = models.CharField(max_length=200,blank=True)
 
-class Category(models.Model):
-	book = models.ForeignKey("Book", related_name="category", on_delete=models.CASCADE)
-	k_isbn = models.CharField(max_length=200)
-	kdc = models.CharField(max_length=200)
-	ddc = models.CharField(max_length=200)
+class DecimalClassification(models.Model):
+	book_id = models.IntegerField()
+	k_isbn = models.CharField(max_length=200,blank=True)
+	kdc = models.CharField(max_length=200,blank=True)
+	ddc = models.CharField(max_length=200,blank=True)
