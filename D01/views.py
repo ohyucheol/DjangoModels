@@ -7,7 +7,7 @@ def index(request):
 
     #Book의 id를 기준으로 Format, DecimalClassification 등을 받는다
     for b in books:
-        formats = Format.objects.filter(book=b['id'])
+        formats = Format.objects.filter(book_id=b['id'])
         b['formats'] = formats
 
         # categories = DecimalClassification.objects.filter(book=b['id'])

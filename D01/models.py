@@ -13,7 +13,7 @@ class Format(models.Model):
 	impression = models.CharField(max_length=200,blank=True)
 	binding = models.CharField(max_length=200,blank=True)
 	size = models.CharField(max_length=200,blank=True)
-	page = models.IntegerField()
+	page = models.IntegerField(null=True, blank=True)
 	weight = models.CharField(max_length=200,blank=True)
 
 class DecimalClassification(models.Model):
