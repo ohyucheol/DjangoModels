@@ -7,19 +7,29 @@
       <h1 class="h1 fw-bold">D01</h1>
       <hr/>
 
+      <!-- {{object_list}} -->
       {{ books }}
+
+      {{aa}}
       {% for b in books %}
+        {{ b.id }}
+        {{ b.title }}
+        {% for f in b.formats %}
+          {{ f.size }}
+          {{ f.binding }}
+          {{ f.weight }}
+          {{ f.page }}
+        {% endfor %}
+      {% endfor %}
+
+      <!-- {% for b in books %}
         {{ b.id }}
         {{ b.title }}
         {{ b.isbn }}
         {{ b.thumbnail}}
-          {% for f in b.formats %}
-            치수 : {{ f.size }}
-            제본 : {{ f.binding }}
-            페이지 : {{ f.page }}
-          {% endfor %}
+        {{ b.a }}
         <br/>
-      {% endfor %}
+      {% endfor %} -->
       <h2 class="h2">Models</h2>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">Username(Business License Number)</li>
