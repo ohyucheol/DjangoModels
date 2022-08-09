@@ -1,0 +1,37 @@
+{% extends "../base.html" %}
+
+{% block title %}D01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3" id="custom-cards">
+    <h1 class="h1 fw-bold">D01</h1>
+
+    <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">부가기호</th>
+          <th scope="col">한국십진분류법</th>
+          <th scope="col">듀이십진분류법</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for dc in decimalclassification %}
+        <tr>
+          <th scope="row">{{ dc.id }}</th>
+          <td>{{ dc.books.first.title }}</td>
+          <td>{{ dc.k_isbn }}</td>
+          <td>{{ dc.kdc }}</td>
+          <td>{{ dc.ddc }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

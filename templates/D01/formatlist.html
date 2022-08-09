@@ -1,0 +1,43 @@
+{% extends "../base.html" %}
+
+{% block title %}D01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3" id="custom-cards">
+    <h1 class="h1 fw-bold">D01</h1>
+
+    <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">판차</th>
+          <th scope="col">쇄차</th>
+          <th scope="col">제본</th>
+          <th scope="col">치수</th>
+          <th scope="col">매수</th>
+          <th scope="col">중량</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for f in formats %}
+        <tr>
+          <th scope="row">{{ f.id }}</th>
+          <td>{{ f.books.first.title }}</td>
+          <td>{{ f.edition }}</td>
+          <td>{{ f.impression }}</td>
+          <td>{{ f.binding }}</td>
+          <td>{{ f.size }}</td>
+          <td>{{ f.page }}</td>
+          <td>{{ f.weight }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

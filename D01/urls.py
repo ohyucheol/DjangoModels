@@ -1,16 +1,13 @@
 from django.urls import path
 from . import views
-from .views import About, BookListView
+from .views import About, BookListView, FormatListView, DecimalClassificationListView
 
 app_name = 'D01'
 
 urlpatterns = [
     path('', About.as_view(), name='about'),
-    path('book/', BookListView.as_view(), name='booklist')
-    # path('create', CreateView.as_view())
-    # path('signup/', views.signup, name='signup'),
-    # path('signin/', views.signin, name='signin'),
-    # path('signout/', views.signout, name='signout'),
-    # path('change-email', views.change_email, name='change-email'),
-    # path('change-password', views.change_password, name='change-password')
+    path('book/', BookListView.as_view(), name='booklist'),
+    path('format/', FormatListView.as_view(), name='formatlist'),
+    path('decimalclassification/', DecimalClassificationListView.as_view(), name='decimalclassificationlist'),
+    
 ]
