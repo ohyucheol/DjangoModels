@@ -1,6 +1,5 @@
 # DjangoApps
-**목적**
-
+**목적**  
 이 과업은 데이터 모델을 유형별로 분류·설계함으로써 재사용할 수 있는 앱을 구현하고 이를 바탕으로 산업상 요구와 그 변화에 부응하는 웹 서비스를 개발하는 것을 목적으로 한다.
 
 ## 데이터 모델의 유형별 분류
@@ -35,8 +34,8 @@
 * TemplateView
 * RedirectView
 2. Generic Display Views
-* DetailView
 * ListView
+* DetailView
 3. Generic Editing Views
 * FormView
 * CreateView
