@@ -1,0 +1,29 @@
+{% extends "../base.html" %}
+
+{% block title %}D01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3" id="custom-cards">
+    <h1 class="h1 fw-bold">D01</h1>
+    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+
+      {% for b in books %}
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('{{ b.thumbnail }}');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-3">
+            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ b.title }}</h2>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                ISBN : {{ b.isbn }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+{% endblock %}
