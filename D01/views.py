@@ -20,7 +20,7 @@ def index(request):
 class BookListView(ListView):
 
     model = Book
-    paginate_by = 1  # if pagination is desired
+    paginate_by = 1
     context_object_name = 'books'
     template_name = 'DjangoApps/templates/D01/booklistview.html'
 
@@ -36,4 +36,4 @@ class BookListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['aa'] = 'aa'
-        return context 
+        return context

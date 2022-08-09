@@ -30,6 +30,27 @@
 ### 구현의 대상
 #### 1. 모델(Model)
 #### 2. 뷰(View)
+1. Base Views
+* View
+* TemplateView
+* RedirectView
+2. Generic Display Views
+* DetailView
+* ListView
+3. Generic Editing Views
+* FormView
+* CreateView
+* UpdateView
+* DeleteView
+4. Generic Date Views
+* ArchiveIndexView
+* YearArchiveView
+* MonthArchiveView
+* WeekArchiveView
+* DayArchiveView
+* TodayArchiveView
+* DateDetailView
+
 #### 3. 템플릿(Template)
 
 ### 구현의 방법

@@ -6,7 +6,7 @@ app_name = 'D01'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('test/', BookListView.as_view(), name='BookListView')
+    path('list/', BookListView.as_view(), name='BookListView')
     # path('create', CreateView.as_view())
     # path('signup/', views.signup, name='signup'),
     # path('signin/', views.signin, name='signin'),
