@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from .models import Book, Format, DecimalClassification
+from .forms import BookModelForm
 # Create your views here.
 
 class About(TemplateView):
@@ -13,6 +16,17 @@ class BookListView(ListView):
     context_object_name = 'books'
     template_name = 'DjangoApps/templates/D01/booklist.html'
 
+class BookDetailView(DetailView):
+    model = Book
+    context_object_name = 'book'
+    template_name = 'DjangoApps/templates/D01/bookdetail.html'
+
+class BookUpdateView(UpdateView):
+    model = Book
+    form_class = BookModelForm
+    template_name = 'DjangoApps/templates/D01/bookupdate.html'
+    success_url = '/D01/book/'
+    
 class FormatListView(ListView):
     model = Format
     paginate_by = 12
@@ -40,3 +54,4 @@ class DecimalClassificationListView(ListView):
             books = Book.objects.filter(id=dc['book_id'])
             dc['books'] = books
         return queryset
+
