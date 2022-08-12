@@ -38,17 +38,20 @@
 * DetailView
 3. Generic Editing Views
 * FormView
+모델 폼을 이용하지 아니하는 등의 특별한 사정이 없는 한 구현하지 아니한다.
 * CreateView
 * UpdateView
 * DeleteView
+해당 데이터를 삭제하기 전에 삭제 여부를 확인해야 하는 등의 특별한 사정이 없는 한 구현하지 아니한다.
 4. Generic Date Views
-* ArchiveIndexView
-* YearArchiveView
-* MonthArchiveView
-* WeekArchiveView
-* DayArchiveView
-* TodayArchiveView
-* DateDetailView
+다음의 뷰는 특별한 사정이 없는 한 구현하지 아니한다.
+* ~~ArchiveIndexView~~
+* ~~YearArchiveView~~
+* ~~MonthArchiveView~~
+* ~~WeekArchiveView~~
+* ~~DayArchiveView~~
+* ~~TodayArchiveView~~
+* ~~DateDetailView~~
 
 #### 3. 템플릿(Template)
 
