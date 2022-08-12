@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+
+{% block title %}C01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3" id="custom-cards">
+    <h1 class="h1 fw-bold">C01</h1>
+    <hr/>
+
+    <h2>삭제하시겠습니까?</h2>
+    <form method="post">
+      {% csrf_token %}
+    <input type="submit" value="Delete">
+    </form>
+
+  </div>
+
+{% endblock %}
