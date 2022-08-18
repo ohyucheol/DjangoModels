@@ -10,9 +10,9 @@ class MeetingRoom(models.Model):
 class Equipment(models.Model):
 	meetingroom_id = models.IntegerField()
 	space = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
-	capacity = models.IntegerField(max_length=200, blank=True)
-	equip_audio = models.CharField(max_length=200, blank=True)
-	equip_video = models.CharField(max_length=200, blank=True)
-	equip_other = models.CharField(max_length=200, blank=True)
+	capacity = models.IntegerField(blank=True)
+	audio = models.CharField(max_length=200, blank=True)
+	video = models.CharField(max_length=200, blank=True)
+	other = models.CharField(max_length=200, blank=True)
 	layout = models.CharField(max_length=200, blank=True)
 	information = models.TextField(max_length=2000, blank=True)

@@ -17,15 +17,15 @@ class MeetingRoomModelForm(forms.ModelForm):
 class EquipmentModelForm(forms.ModelForm):
     class Meta:
         model = Equipment
-        fields = ['meetingroom_id', 'space', 'capacity', 'equip_audio', 'equip_video', 'equip_other', 'layout', 'information']
+        fields = ['meetingroom_id', 'space', 'capacity', 'audio', 'video', 'other', 'layout', 'information']
 
         widgets = {
             'meetingroom_id' : forms.NumberInput(attrs={'class': 'form-control mb-3'}),
             'space' : forms.NumberInput(attrs={'class': 'form-control mb-3'}),
             'capacity' : forms.NumberInput(attrs={'class': 'form-control mb-3'}),
-            'equip_audio' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'equip_video' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'equip_other' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'audio' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'video' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'other' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'layout' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'information' : forms.Textarea(attrs={'class': 'form-control mb-3'}),
         }

@@ -49,9 +49,9 @@
 * 회의실 ID(meetingroom_id / IntegerField)
 * 면적(space / DecimalField)
 * 수용인원(capacity / IntegerField)
-* 음향시설(equip_audio / CharField)
-* 영상시설(equip_video / CharField)
-* 기타시설(equip_other / CharField)
+* 음향시설(audio / CharField)
+* 영상시설(video / CharField)
+* 기타시설(other / CharField)
 * 시설배치(layout / CharField)
 * 상세설명(information / TextField)
 
