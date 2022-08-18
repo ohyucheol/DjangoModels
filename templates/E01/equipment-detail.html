@@ -1,0 +1,44 @@
+{% extends "../base.html" %}
+
+{% block title %}E01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3" id="custom-cards">
+    <h1 class="h1 fw-bold">E01</h1>
+    <hr/>
+
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ equipment.picture }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">equipment name</h1>
+        <h2>면적</h2>
+        <p class="lead">{{ equipment.space }}</p>
+        <h2>수용인원</h2>
+        <p class="lead">{{ equipment.capacity }}</p>
+        <h2>음향시설</h2>
+        <p class="lead">{{ equipment.equip_audio }}</p>
+        <h2>영상시설</h2>
+        <p class="lead">{{ equipment.equip_video }}</p>
+        <h2>기타시설</h2>
+        <p class="lead">{{ equipment.equip_other }}</p>
+        <h2>시설배치</h2>
+        <p class="lead">{{ equipment.layout }}</p>
+        <h2>상세설명</h2>
+        <p class="lead">{{ equipment.information }}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="http://{{ request.get_host }}/E01/meetingroom/{{ equipment.id }}/update">
+            <button type="button" class="btn btn-outline-primary btn-lg px-4 me-md-2">수정</button>
+          </a>
+          <a href="http://{{ request.get_host }}/E01/meetingroom/{{ equipment.id }}/delete">
+            <button type="button" class="btn btn-outline-danger btn-lg px-4">삭제</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 # E01. 회의실
-물건을 특정하고 그 물건의 성질을 기술하는 방법이 문제된다. 이 앱에서는 회의실을 명칭, 주소, 사진으로 특정하고 이것을 강의실(Classroom) 모델로 구현한다. 기본 시나리오에 따라 회의실은 (단기)임대차의 객체가 된다. 임대차의 목적을 달성하는데에 필요한 회의실의 성질은 시설 및 설비(Equipment) 모델로 구현한다. 그 외 이용시간, 결제방법, 주차지원 등의 사항은 'H.법률행위'에 속하는 것이므로 다른 앱에서 구현하기로 한다.
+물건을 특정하고 그 물건의 성질을 기술하는 방법이 문제된다. 이 앱에서는 회의실을 명칭, 주소, 사진으로 특정하고 이것을 회의실(MeetingRoom) 모델로 구현한다. 기본 시나리오에 따라 회의실은 (단기)임대차의 객체가 된다. 임대차의 목적을 달성하는데에 필요한 회의실의 성질은 시설 및 설비(Equipment) 모델로 구현한다. 그 외 이용시간, 결제방법, 주차지원 등의 사항은 'H.법률행위'에 속하는 것이므로 다른 앱에서 구현하기로 한다.
 
 ## 설계의 기준
 ### 기본 시나리오 및 유사사례
@@ -39,14 +39,14 @@
 
 ## 구현의 대상
 ### 모델(Model)
-1. 강의실(Classroom)
+1. 회의실(MeetingRoom)
 * 명칭(name / CharField)
 * 주소 또는 명칭(address / CharField)
 * 사진(picture / URLField)
 * 검색어(keyword / CharField)
 
 2. 시설 및 설비(Equipment)
-* 강의실 ID(classroom_id / IntegerField)
+* 회의실 ID(meetingroom_id / IntegerField)
 * 면적(space / DecimalField)
 * 수용인원(capacity / IntegerField)
 * 음향시설(equip_audio / CharField)

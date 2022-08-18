@@ -1,0 +1,23 @@
+{% extends "../base.html" %}
+
+{% block title %}E01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">E01</h1>
+    <hr/>
+    <div class="row">
+      {% for m in meetingroom %}
+      <div class="col-lg-3">
+        <img src="{{ m.picture }}" style="width: auto; height: 300px;">
+
+        <h2 class="fw-normal">{{ m.name }}</h2>
+        <p>{{ m.address }}</p>
+        <p><a class="btn btn-secondary" href="http://{{request.get_host}}/E01/meetingroom/{{ m.id }}">상세보기 &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      {% endfor %}
+    </div><!-- /.row -->
+  </div>
+
+{% endblock %}
