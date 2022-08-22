@@ -7,10 +7,51 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
+
+
+// // Creates a new editor instance
+// const ed = new tinymce.Editor('aa', {
+//   some_setting: 1
+// }, tinymce.EditorManager);
+// // Rendering editor
+// ed.render();
+
+
+
+// tinymce.init({
+//   selector: 'textarea',
+//   toolbar: 'urldialog hoho',
+//   setup: (editor) => {
+//     // editor.on('click', () => {
+//     //   alert('heheh');
+//     // });
+//     editor.ui.registry.addButton('urldialog', {
+//       icon: 'gallery',
+//       onAction: () => editor.windowManager.openUrl({
+//         title: 'URL Dialog Demo',
+//         url: 'https://example.com',
+//       })
+//     });
+//     editor.ui.registry.addButton('hoho', {
+//       icon: 'gallery',
+//       onAction: () => editor.windowManager.openUrl({
+//         title: 'URL hoho Demo',
+//         url: 'https://example.com',
+//       })
+//     });
+//   },
+//   content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+// });
+
+
 tinymce.init({
   selector: 'textarea',
   toolbar: 'urldialog hoho',
   setup: (editor) => {
+    // editor.on('click', () => {
+      // alert(JSON.stringify(editor));
+      // console.log(editor);
+    // });
     editor.ui.registry.addButton('urldialog', {
       icon: 'gallery',
       onAction: () => editor.windowManager.openUrl({
@@ -27,6 +68,8 @@ tinymce.init({
     });
   },
   content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+}).then((editors) => {
+  //do something;
 });
 </script>
     <div class="container mt-3">
@@ -35,7 +78,7 @@ tinymce.init({
       {% for b in buckets %}
         {{ b.name }}
       {% endfor %}
-      <textarea></textarea>
+      <textarea id="aa"></textarea>
       <input type="file">
     </div>
 {% endblock %}
