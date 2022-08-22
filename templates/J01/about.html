@@ -3,11 +3,39 @@
 {% block title %}J01{% endblock %}
 
 {% block content %}
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+tinymce.init({
+  selector: 'textarea',
+  toolbar: 'urldialog hoho',
+  setup: (editor) => {
+    editor.ui.registry.addButton('urldialog', {
+      icon: 'gallery',
+      onAction: () => editor.windowManager.openUrl({
+        title: 'URL Dialog Demo',
+        url: 'https://example.com',
+      })
+    });
+    editor.ui.registry.addButton('hoho', {
+      icon: 'gallery',
+      onAction: () => editor.windowManager.openUrl({
+        title: 'URL hoho Demo',
+        url: 'https://example.com',
+      })
+    });
+  },
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
+</script>
     <div class="container mt-3">
       <h1 class="h1 fw-bold">J01</h1>
       <hr/>
       {% for b in buckets %}
         {{ b.name }}
       {% endfor %}
+      <textarea></textarea>
+      <input type="file">
     </div>
 {% endblock %}
