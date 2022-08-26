@@ -63,7 +63,7 @@
 * 부제(subtitle / CharField)
 * 썸네일(picture / URLField)
 * 내용(content / TextField)
-* 공표일(modified / DateField)
+* 공표일(published / DateField)
 * 검색어(keyword / CharField)
 
 ### 뷰(View)
