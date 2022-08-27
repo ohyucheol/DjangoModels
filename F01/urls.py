@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import About, ArticleListView
+from .views import About, ArticleListView, ArticleUpdateView
 
 
 app_name = 'F01'
@@ -10,7 +10,7 @@ urlpatterns = [
     path('article/', ArticleListView.as_view(), name='article-list'),
     # path('meetingroom/create/', MeetingRoomCreateView.as_view(), name='meetingroom-create'),
     # path('meetingroom/<int:pk>/', MeetingRoomDetailView.as_view(), name='meetingroom-detail'),
-    # path('meetingroom/<int:pk>/update/', MeetingRoomUpdateView.as_view(), name='meetingroom-update'),
+    path('article/<int:pk>/update/', ArticleUpdateView.as_view(), name='article-update'),
     # path('meetingroom/<int:pk>/delete/', MeetingRoomDeleteView.as_view(), name='meetingroom-delete'),
 
     # path('equipment/', EquipmentListView.as_view(), name='equipment-list'),

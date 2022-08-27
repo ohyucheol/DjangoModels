@@ -4,7 +4,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from .models import Article
-from .forms import ArticleModelForm
+from .forms import ArticleModelForm, ArticleUpdateForm\
+
+from datetime import date
 # Create your views here.
 
 class About(TemplateView):
@@ -28,11 +30,13 @@ class ArticleListView(ListView):
 #     template_name = 'DjangoApps/templates/F01/article-form.html'
 #     success_url = '/F01/Article/'
 
-# class ArticleUpdateView(UpdateView):
-#     model = Article
-#     form_class = ArticleModelForm
-#     template_name = 'DjangoApps/templates/F01/article-form.html'
-#     success_url = '/F01/Article/'
+class ArticleUpdateView(UpdateView):
+    model = Article
+    form_class = ArticleUpdateForm
+    # fields = ['title', 'thumbnail', 'content']
+    initial = { 'published': date.today() }
+    template_name = 'DjangoApps/templates/F01/article-form.html'
+    success_url = '/F01/article/'
 
 # class ArticleDeleteView(DeleteView):
 #     model = Article
