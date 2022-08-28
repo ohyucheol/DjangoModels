@@ -38,6 +38,14 @@ class ArticleUpdateView(UpdateView):
     template_name = 'DjangoApps/templates/F01/article-form.html'
     success_url = '/F01/article/'
 
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # self.object.title = 'hhh'
+        self.object.thumbnail = 'http://localhost'
+        self.object.save()
+        return super().form_valid(form)
+
 # class ArticleDeleteView(DeleteView):
 #     model = Article
 #     template_name = 'DjangoApps/templates/F01/article-delete.html'
