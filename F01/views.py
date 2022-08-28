@@ -42,6 +42,7 @@ class ArticleUpdateView(UpdateView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         # self.object.title = 'hhh'
+        self.object.writer_id = self.request.user.id
         self.object.thumbnail = 'http://localhost'
         self.object.save()
         return super().form_valid(form)
