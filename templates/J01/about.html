@@ -71,7 +71,7 @@ for (var key in editor) {
 
 }
 
-alert(keys);
+// alert(keys);
 
     // editor.on('click', () => {
       // alert(JSON.stringify(editor));
@@ -122,6 +122,12 @@ alert(keys);
       <hr/>
       {% for b in buckets %}
         {{ b.name }}
+      {% endfor %}
+      {% for s in services %}
+        {{ s }}
+      {% endfor %}
+      {% for o in objects %}
+        <p>{{ o }}</p>
       {% endfor %}
       <textarea id="aa"></textarea>
       <input type="file">

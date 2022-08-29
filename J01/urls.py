@@ -5,4 +5,6 @@ app_name = 'J01'
 
 urlpatterns = [
     path('', views.about, name='about'),
+    path('list', views.list, name='list'),
+    path('upload', views.upload, name='upload'),
 ]

@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+
+{% block title %}J01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">J01 파일 업로더</h1>
+    <hr/>
+
+    <form method="POST" action="{% url 'J01:upload' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input name="file" class="form-control" type="file" id="formFile">
+      </div>
+      <button type="submit" class="btn btn-primary">업로드</button>
+    </form>
+
+  </div>
+
+{% endblock %}
