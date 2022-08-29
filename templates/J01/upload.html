@@ -22,8 +22,7 @@
   </div>
 
 <script type="text/javascript">
-  document.getElementById("button").onclick = function(){ spinner() };
-  function spinner() {
-    document.getElementById("button").innerHTML = '<span class="spinner-border spinner-border-sm"></span>'; }
+  document.getElementById("button").onclick = function(){
+    this.innerHTML = '<span class="spinner-border spinner-border-sm"></span>' };
 </script>
 {% endblock %}
