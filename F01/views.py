@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
@@ -45,7 +46,9 @@ class ArticleUpdateView(UpdateView):
         self.object.writer_id = self.request.user.id
         self.object.thumbnail = 'http://localhost'
         self.object.save()
-        return super().form_valid(form)
+        # return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+        # return render(self.request, 'DjangoApps/templates/F01/about.html')
 
 # class ArticleDeleteView(DeleteView):
 #     model = Article
