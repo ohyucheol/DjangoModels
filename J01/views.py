@@ -18,7 +18,15 @@ def list(request):
     bucket = s3.Bucket('testbucket.djangoapps')
     objects = bucket.objects.all()
 
-    return render(request, 'DjangoApps/templates/J01/list.html', {'objects':objects})
+    if request.method == 'POST':
+        keys = request.POST.getlist('keys[]')
+        for k in keys:
+            response = bucket.delete_objects(Delete={'Objects':[ {'Key': k} ]})
+            
+        objects = bucket.objects.all()
+        return render(request, 'DjangoApps/templates/J01/list.html', {'objects':objects})
+    else:
+        return render(request, 'DjangoApps/templates/J01/list.html', {'objects':objects})
 
 def upload(request):
     if request.method == 'POST':
@@ -32,5 +40,4 @@ def upload(request):
         # return render(request, 'DjangoApps/templates/J01/upload.html', {'request':request})
 
     else:
-        pass
         return render(request, 'DjangoApps/templates/J01/upload.html')
