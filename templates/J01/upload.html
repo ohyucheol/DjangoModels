@@ -5,17 +5,25 @@
 {% block content %}
 
   <div class="container mt-3">
-    <h1 class="h1 fw-bold">J01 파일 업로더</h1>
+    <h1 class="h1 fw-bold">J01 파일 업로드</h1>
     <hr/>
 
     <form method="POST" action="{% url 'J01:upload' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-3">
-        <input name="file" class="form-control" type="file" id="formFile">
+        <input name="files" class="form-control" type="file" multiple>
       </div>
-      <button type="submit" class="btn btn-primary">업로드</button>
+      <button id="button" type="submit" class="btn btn-primary">업로드</button>
     </form>
+
+    <hr/>
+    <a href="{% url 'J01:list' %}">파일 목록 페이지로 이동</a>
 
   </div>
 
+<script type="text/javascript">
+  document.getElementById("button").onclick = function(){ spinner() };
+  function spinner() {
+    document.getElementById("button").innerHTML = '<span class="spinner-border spinner-border-sm"></span>'; }
+</script>
 {% endblock %}
