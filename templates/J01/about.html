@@ -9,15 +9,17 @@
 <script>
   tinymce.init({
     selector: 'textarea',
-    plugins: 'image media',
-    toolbar: 'undo redo | blocks | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist | upload',
+    plugins: 'image media table preview',
+    menubar: 'edit insert format table help',
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist | upload image media table | preview ',
+    language: 'ko_KR',
     setup: (editor) => {
       editor.ui.registry.addButton('upload', {
         icon: 'gallery',
         onAction: () => editor.windowManager.openUrl({
           title: '파일 관리',
           url: '{% url 'J01:modal-list' %}',
-        })
+        })  //onAction
       }); //editor.ui.registry.addButton
     }, //setup
   }).then((editors) => {
