@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import boto3
-from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 # Create your views here.
 
 def about(request):
@@ -43,7 +43,7 @@ def upload(request):
     else:
         return render(request, 'DjangoApps/templates/J01/upload.html')
 
-@xframe_options_exempt
+@xframe_options_sameorigin
 def modal_list(request):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('testbucket.djangoapps')
@@ -59,7 +59,7 @@ def modal_list(request):
         objects = bucket.objects.all()
         return render(request, 'DjangoApps/templates/J01/modal-list.html', {'objects':objects})
 
-@xframe_options_exempt
+@xframe_options_sameorigin
 def modal_upload(request):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('testbucket.djangoapps')
