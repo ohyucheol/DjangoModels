@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import boto3
 from django.views.decorators.clickjacking import xframe_options_sameorigin
+import os
 # Create your views here.
 
 def about(request):
@@ -8,11 +9,12 @@ def about(request):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('testbucket.djangoapps')
     objects = bucket.objects.all()
+    var = os.environ["HOHO"]
     # buckets = s3.buckets.all()
     # services = s3.get_available_subresources()
     
 
-    return render(request, 'DjangoApps/templates/J01/about.html', {'objects':objects})
+    return render(request, 'DjangoApps/templates/J01/about.html', {'objects':objects, 'var':var})
 
 def list(request):
     s3 = boto3.resource('s3')
