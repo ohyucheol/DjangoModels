@@ -1,8 +1,10 @@
 # A01. 금칙어
-username의 전부 또는 일부가 사용할 수 없는 단어인 경우에 관한 사례이다.
+1. Django에서 제공하는 기본 User 모델을 사용한 사례.
+2. 특정 단어를 username의 전부 또는 일부로 사용할 수 없는 사례.
+[3] 각 이용자가 자신의 username을 url로 하는 개인 페이지를 매개로 서로 상호작용하기 위한 요건.
 
 ## 설계의 기준
-### 기본 시나리오 및 유사사례
+### 기본 시나리오
 연예기획사 甲은 인기 아이돌 그룹 A, B, C와 전속계약을 체결하였다. A 그룹의 멤버는 alfa, bravo, charlie 이고, B 그룹의 멤버는 delta, echo, foxtrot, golf, hotel 이며, C 그룹의 멤버는 india, juliet, kilo, lima, mike 이다. 甲은 소속 그룹의 팬들을 위하여 웹 서비스를 제공하고자 한다. 서비스의 회원가입과 관련한 甲의 요구사항은 다음과 같다.
 1. 가입시 각 이용자마다 example.com/**username**과 같이 자신의 username을 url로 하는 개인 페이지를 할당한다.
 2. 이용자는 example.com/bigfanof**A**, example.com/ilove**charlie**와 같이 甲에 소속된 그룹의 명칭 또는 가수의 이름을 자신의 username에 포함할 수 있다.
