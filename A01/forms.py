@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.core.validators import RegexValidator, EmailValidator
 
+# 요구사항에 따라 validator, error_messages, widget 등 Form의 구성요소 대다수를 override 하여야 하므로,
+# UserCreationForm 대신 ModelForm을 상속하여 Form을 구성하였다.
 class UserCreateForm(forms.ModelForm):
     val1 = RegexValidator(regex='^([a-zA-Z0-9])+$') #로마자 및 아라비아 숫자만을 허용한다.
     val2 = EmailValidator()
