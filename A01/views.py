@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.core.validators import validate_email
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -19,65 +18,33 @@ class UserCreateView(CreateView):
     success_url = '/A01/'
 
     def form_invalid(self, form):
-        #번역필요
-        err = dict(form.errors)
-        messages = ''
-        # err = form.errors.as_text()
-        # context = {'message': form.errors.as_text(), 'form':form}
-        # print(err)
-        for e in err.values():
-            print(e)
-            messages = messages + e
+        # field validation error를 처리한다.
+        for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
+            if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
+                for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
+                    context = {'message': err, 'form':form}
+                    return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
+
+        # non-field validation error 및 기타 error를 처리한다.
         context = {'message': form.errors, 'form':form}
         return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
 
-        # messages = dict(form.errors)
-
-        # print(messages)
-        # for key in messages:
-        #     print(key)
-
-        # if form.has_error('username'):
-        #     context = {'message': '사용할 수 없는 아이디입니다', 'form':form}
-        #     return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
-
-        # if form.has_error('email'):
-        #     context = {'message': '사용할 수 없는 이메일입니다', 'form':form}
-        #     return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
-
-        # if form.has_error('password') or form.has_error('password2'):
-        #     context = {'message': '사용할 수 없는 비밀번호입니다', 'form':form}
-        #     return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
-
-        # #그밖의 에러
-        # context = {'message': form.errors, 'form':form}
-        # return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
-
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        # 기본적인 validation을 통과한 이후의 과정이다.
+        # 다음 두 경우는 form에서 검증한다 - form_invalid()에 해당함.
+        # if User.objects.filter(username=data['username']):
+        # if data['email'] == '':
 
         data = form.cleaned_data
-
-        if User.objects.filter(username=data['username']):
-            context = {'message':'이미 사용중인 아이디입니다', 'form':form}
-            return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
-
-        if data['email'] == '': 
-            context = {'message':'이메일을 입력하세요', 'form':form}
-            return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
 
         if User.objects.filter(email=data['email']):
             context = {'message':'이미 사용중인 이메일입니다', 'form':form}
             return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
 
-        if data['password'] != data['password2']:
+        if data['password1'] != data['password2']:
             context = {'message':'비밀번호가 일치하지 않습니다', 'form':form}
             return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
 
-        user = User.objects.create_user(username=data['username'], email=data['email'], password=data['password'])
+        user = User.objects.create_user(username=data['username'], email=data['email'], password=data['password1'])
         # login(self.request, user)
         return HttpResponseRedirect(self.success_url)
-
-        #실패한 경우(username 중복, 비밀번호 불일치 등)
-        #return redirect()
