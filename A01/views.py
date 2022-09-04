@@ -1,11 +1,12 @@
+from .forms import UserCreateForm
+from django.contrib.auth.models import User
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+
 from django.views.generic import TemplateView
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.contrib.auth.models import User
-from .forms import UserCreateForm
+
 # Create your views here.
 
 class About(TemplateView):
