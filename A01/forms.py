@@ -1,8 +1,12 @@
+import json, os
+
 from django import forms
 from django.contrib.auth.models import User
-
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.validators import ASCIIUsernameValidator
+
 from django.core.validators import RegexValidator, EmailValidator
+from django.core.exceptions import ValidationError
 
 # validator, validation error, widget 등의 구성을 위한 FormDecorator
 class FormDecorator:
@@ -10,10 +14,23 @@ class FormDecorator:
     # 그럼에도 불구하고 unique error가 발생하는 것은 User 모델의 username field에서 unique 여부를 판단하기 때문이다.
     # 즉, ModelForm의 field는 form의 validation, model의 validation에서 각각 검증된다.
 
+    def val_banned(self, username):
+        path = os.path.dirname(__file__) + '/banned.json'
+        file = open(path)
+        banned_keyword = json.load(file)
+
+        for k in banned_keyword['full']:
+            if username == k:
+                raise ValidationError( '"%(banned)s"는 사용할 수 없는 아이디입니다', params={'banned': k})
+
+        for k in banned_keyword['part']:
+            if k in username:
+                raise ValidationError( '아이디에 "%(banned)s"를 포함할 수 없습니다', params={'banned': k})
+
     val_azAZ09 = RegexValidator(regex='^([a-zA-Z0-9])+$')
     val_email = EmailValidator()
 
-    err_username = {'unique' : '이미 사용중인 아이디입니다', 'required' : '아이디를 입력하세요', 'invalid' : '아이디에는 영문자와 숫자만 사용할 수 있습니다', 'max_length' : '아이디는 150자 이하여야 합니다'}
+    err_username = {'unique' : '이미 사용중인 아이디입니다', 'required' : '아이디를 입력하세요', 'invalid' : '아이디에는 영문자와 숫자만 사용할 수 있습니다', 'max_length' : '아이디는 150자 이하여야 합니다', 'invalid_login':'홀리몰리'}
     err_email = {'required' : '이메일을 입력하세요', 'invalid' : '이메일 형식이 바르지 않습니다'}
     err_password = {'required' : '비밀번호를 입력하세요'}
 
@@ -29,7 +46,7 @@ class CreateUserForm(forms.ModelForm):
     # 예컨대 email의 경우 입력하지 않는다면 required 속성에 의하여 한 번, EmailValidator()에 의하여 한 번,
     # 총 두 번의 required error가 발생한다.
 
-    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09], label='아이디')
+    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
     email = forms.EmailField(widget=d.wid_email, error_messages=d.err_email, validators=[d.val_email], label='이메일')
     password1 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
     password2 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호확인')
@@ -66,6 +83,15 @@ class UpdatePasswordForm(forms.ModelForm):
         model = User
         fields = ['password']
 
+class LoginUserForm(AuthenticationForm):
+    pass
+#     d = FormDecorator()
+
+#     username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
+#     password = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
+
+#     class Meta:
+#         fields = ['username', 'password']
 
 
 

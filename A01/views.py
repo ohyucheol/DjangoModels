@@ -1,9 +1,13 @@
-from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, UpdatePasswordForm
+from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
+                    UpdatePasswordForm, FormDecorator, LoginUserForm
+
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+
 
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -117,15 +121,25 @@ class UpdatePasswordView(UpdateView):
             context = {'message':'현재 비밀번호가 일치하지 않습니다', 'form':form}
             return render(self.request, self.template_name, context)
 
-        #모든 검증을 통과한 경우
+        #모든 추가 검증을 통과한 경우
         user.set_password(data['password1'])
         user.save() 
         login(self.request, user)
         return HttpResponseRedirect(self.success_url)
 
+class LoginUserView(LoginView):
+    pass
+    # form_class = LoginUserForm
+    # template_name = template_name = 'DjangoApps/templates/A01/update-password.html'
 
+    # def form_invalid(self, form):
+    #     # field validation error를 처리한다.
+    #     for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
+    #         if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
+    #             for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
+    #                 context = {'message': err, 'form':form}
+    #                 return render(self.request, self.template_name, context)
 
-
-
-
-
+    #     # non-field validation error 및 기타 error를 처리한다.
+    #     context = {'message': form.errors, 'form':form}
+    #     return render(self.request, self.template_name, context)
