@@ -4,9 +4,19 @@
 
 {% block content %}
     <div class="container mt-3">
-      <h1 class="h1 fw-bold">A01</h1>
+      <h1 class="h1 fw-bold">A01: 개요</h1>
       <hr/>
-      About Page
-      <p>{{request.user}}</p>
+
+      <h2 class="h2">회원정보</h2>
+        {{ request.user }}
+        {{ request.user.id }}
+      <hr/>
+
+      <h2 class="h2">뷰(View)</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item"><a href="{% url 'A01:about' %}">개요 / About(TemplateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'A01:create' %}">회원가입 / CreateUserView(CreateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'A01:update-username' pk=request.user.id %}">아이디 변경 / UpdateUsernameView(TemplateView)</a></li>
+      </ul>
     </div>
 {% endblock %}

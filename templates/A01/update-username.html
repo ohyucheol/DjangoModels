@@ -1,0 +1,61 @@
+{% extends "../base.html" %}
+
+{% block title %}A01{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+      <h1 class="h1 fw-bold">A01: 아이디 변경</h1>
+      <hr/>
+
+
+
+      <div class="row">
+        <nav class="col-md-3 col-lg-2 mb-3">
+          <ul class="nav flex-column">
+            <li class="nav-item border-bottom">
+              <a class="nav-link" href="{% url 'A01:about' %}">
+                <i class="bi bi-house"></i><span class="fw-normal mx-2">메인화면으로</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'A01:update-username' pk=request.user.id %}">
+                <i class="bi bi-pass"></i><span class="fw-normal mx-2">아이디 변경</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'A01:update-username' pk=request.user.id %}">
+                <i class="bi bi-envelope"></i><span class="fw-normal mx-2">이메일 변경</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'A01:update-username' pk=request.user.id %}">
+                <i class="bi bi-lock"></i><span class="fw-normal mx-2">비밀번호 변경</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="col-md-9 col-lg-10">
+          <label class="fs-5 fw-semibold">사용중인 아이디</label>
+            <p>{{ request.user }}</p>
+            <hr/>
+
+          <form method="POST">
+            {% csrf_token %}
+            <label class="form-label fs-5 fw-semibold">{{ form.username.label }}</label>
+            <p>새롭게 사용할 아이디를 입력하세요. 아이디에는 영문자와 숫자만 사용할 수 있습니다</p>
+            {{ form.username }}
+
+            {% if message %}
+              <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endif %}
+
+            <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">확인</button>
+          </form>
+        </div>
+      </div><!-- row -->
+
+
+    </div>
+
+{% endblock %}
