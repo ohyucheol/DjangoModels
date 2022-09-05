@@ -30,10 +30,10 @@ class UserCreateForm(forms.ModelForm):
     # 예컨대 email의 경우 입력하지 않는다면 required 속성에 의하여 한 번, EmailValidator()에 의하여 한 번,
     # 총 두 번의 required error가 발생한다.
 
-    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09])
-    email = forms.EmailField(widget=d.wid_email, error_messages=d.err_email, validators=[d.val_email])
-    password1 = forms.CharField(widget=d.wid_password, error_messages=d.err_password)
-    password2 = forms.CharField(widget=d.wid_password, error_messages=d.err_password)
+    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09], label='아이디')
+    email = forms.EmailField(widget=d.wid_email, error_messages=d.err_email, validators=[d.val_email], label='이메일')
+    password1 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
+    password2 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호확인')
 
     class Meta:
         # 이 ModelForm과 관련한 Model과 그 field를 지정하는 부분으로써 여기에서 지정한 field에 대해서는

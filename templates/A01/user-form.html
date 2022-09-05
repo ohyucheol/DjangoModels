@@ -4,23 +4,30 @@
 
 {% block content %}
 
-  <div class="container mt-3" id="custom-cards">
-    <h1 class="h1 fw-bold">A01</h1>
+  <div class="container-fluid mt-3 w-75">
+    <h1 class="h1 fw-bold">A01: 회원가입</h1>
     <hr/>
+    <!-- <h1 class="h1 mb-5 fw-bold text-center">회원가입</h1> -->
+    <div class="row m-auto">
+      <div class="col-12 col-xl-6">
+        <label class="fs-5 fw-semibold">가입안내</label>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu posuere purus. Maecenas suscipit tellus vel aliquet feugiat. Maecenas rhoncus ligula vel ipsum aliquet, at iaculis nulla tempus. Curabitur blandit, mauris id ultrices posuere, nibh est sollicitudin mauris, id tempor tellus nunc a augue. Suspendisse eget malesuada neque, ac porta justo. Mauris quis nulla massa. Nullam feugiat, orci ut vulputate mattis, massa odio ultricies eros, id consectetur justo nisl at lectus. Quisque in vestibulum elit. Suspendisse potenti. Integer maximus mollis fringilla. Ut vel eleifend dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus quam, lobortis nec metus quis, sagittis porta metus.</p>
+      </div>
+      <div class="col-12 col-xl-6">
+        {% if message %}
+          <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endif %}
 
-    {% if message %}
-      <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% endif %}
-
-    <form method="POST">
-      {% csrf_token %}
-      {% for field in form %}
-        <label class="form-label">{{ field.label }}</label>
-        {{ field }}
-      {% endfor %}
-      <button type="submit" class="btn btn-primary">확인</button>
-    </form>
-
+        <form method="POST">
+          {% csrf_token %}
+          {% for field in form %}
+            <label class="form-label fs-5 fw-semibold">{{ field.label }}</label>
+            {{ field }}
+          {% endfor %}
+          <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">확인</button>
+        </form>
+      </div>
+    </div>
   </div>
 
 {% endblock %}
