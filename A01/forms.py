@@ -21,8 +21,8 @@ class FormDecorator:
     wid_email = forms.EmailInput(attrs={'class': 'form-control mb-3'})
     wid_password = forms.PasswordInput(attrs={'class': 'form-control mb-3'})
 
-# validator 등을 부가한 field를 포함하는 ModelForm의 구성을 위한 UserCreateForm
-class UserCreateForm(forms.ModelForm):
+# validator 등을 부가한 field를 포함하는 ModelForm의 구성을 위한 CreateUserForm
+class CreateUserForm(forms.ModelForm):
     d = FormDecorator()
 
     # 모델에 없는 field 또는 별도의 기능(validation 등)이 필요한 field들은 다음과 같이 새로 정의할 수 있다.

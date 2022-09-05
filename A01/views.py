@@ -1,4 +1,4 @@
-from .forms import UserCreateForm
+from .forms import CreateUserForm
 from django.contrib.auth.models import User
 
 from django.http import HttpResponseRedirect
@@ -12,9 +12,9 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 class About(TemplateView):
     template_name = "DjangoApps/templates/A01/about.html"
 
-class UserCreateView(CreateView):
+class CreateUserView(CreateView):
     model = User
-    form_class = UserCreateForm
+    form_class = CreateUserForm
     template_name = 'DjangoApps/templates/A01/user-form.html'
     success_url = '/A01/'
 
