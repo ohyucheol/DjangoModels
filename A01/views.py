@@ -15,7 +15,7 @@ class About(TemplateView):
 class CreateUserView(CreateView):
     model = User
     form_class = CreateUserForm
-    template_name = 'DjangoApps/templates/A01/user-form.html'
+    template_name = 'DjangoApps/templates/A01/create-user.html'
     success_url = '/A01/'
 
     def form_invalid(self, form):
