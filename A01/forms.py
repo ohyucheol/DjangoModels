@@ -21,7 +21,6 @@ class FormDecorator:
     wid_email = forms.EmailInput(attrs={'class': 'form-control mb-3'})
     wid_password = forms.PasswordInput(attrs={'class': 'form-control mb-3'})
 
-# validator 등을 부가한 field를 포함하는 ModelForm의 구성을 위한 CreateUserForm
 class CreateUserForm(forms.ModelForm):
     d = FormDecorator()
 
@@ -43,9 +42,36 @@ class CreateUserForm(forms.ModelForm):
 
 class UpdateUsernameForm(forms.ModelForm):
     d = FormDecorator()
-
     username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09], label='새로운 아이디')
 
     class Meta:
         model = User
         fields = ['username']
+
+class UpdateEmailForm(forms.ModelForm):
+    d = FormDecorator()
+    email = forms.EmailField(widget=d.wid_email, error_messages=d.err_email, validators=[d.val_email], label='새로운 이메일')
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+class UpdatePasswordForm(forms.ModelForm):
+    d = FormDecorator()
+    password = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='현재 비밀번호')
+    password1 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='새로운 비밀번호')
+    password2 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='새로운 비밀번호 확인')
+
+    class Meta:
+        model = User
+        fields = ['password']
+
+
+
+
+
+
+
+
+
+
