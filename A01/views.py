@@ -2,7 +2,7 @@ from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
                     UpdatePasswordForm, FormDecorator, LoginUserForm
 
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 
 from django.http import HttpResponseRedirect
@@ -122,7 +122,7 @@ class UpdatePasswordView(UpdateView):
 
 class LoginUserView(LoginView):
     form_class = LoginUserForm
-    template_name = template_name = 'DjangoApps/templates/A01/update-password.html'
+    template_name = template_name = 'DjangoApps/templates/A01/login-user.html'
 
     def form_invalid(self, form):
         for f in self.form_class.Meta.fields:
@@ -135,4 +135,7 @@ class LoginUserView(LoginView):
         for err in form.errors['__all__']:
             context = {'message': err, 'form':form}
             return render(self.request, self.template_name, context)
-        
+
+class LogoutUserView(LogoutView):
+    form_class = LoginUserForm
+    template_name = 'DjangoApps/templates/A01/login-user.html'
