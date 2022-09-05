@@ -31,11 +31,7 @@ class UserCreateView(CreateView):
         return render(self.request, 'DjangoApps/templates/A01/user-form.html', context)
 
     def form_valid(self, form):
-        # 기본적인 validation을 통과한 이후의 과정이다.
-        # 다음 두 경우는 form에서 검증한다 - form_invalid()에 해당함.
-        # if User.objects.filter(username=data['username']):
-        # if data['email'] == '':
-
+        # 기본적인 validation을 통과한 field를 대상으로 추가 검증을 수행한다.
         data = form.cleaned_data
 
         if User.objects.filter(email=data['email']):
