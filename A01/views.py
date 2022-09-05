@@ -27,8 +27,8 @@ class CreateUserView(CreateView):
         # field validation error를 처리한다.
         for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
             if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
-                for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
-                    context = {'message': err, 'form':form}
+                for err in form.errors[f]:      # (이 loop은 html 요소를 제거하기 위한 것이다.)
+                    context = {'message': err, 'form':form} # 그 error에 관한 messages를 포함하여 render 한다.
                     return render(self.request, self.template_name, context)
 
         # non-field validation error 및 기타 error를 처리한다.
@@ -59,14 +59,12 @@ class UpdateUsernameView(UpdateView):
     success_url = '/A01/'
 
     def form_invalid(self, form):
-        # field validation error를 처리한다.
-        for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
-            if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
-                for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
                     context = {'message': err, 'form':form}
                     return render(self.request, self.template_name, context)
 
-        # non-field validation error 및 기타 error를 처리한다.
         context = {'message': form.errors, 'form':form}
         return render(self.request, self.template_name, context)
 
@@ -78,14 +76,12 @@ class UpdateEmailView(UpdateView):
     success_url = '/A01/'
 
     def form_invalid(self, form):
-        # field validation error를 처리한다.
-        for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
-            if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
-                for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
                     context = {'message': err, 'form':form}
                     return render(self.request, self.template_name, context)
 
-        # non-field validation error 및 기타 error를 처리한다.
         context = {'message': form.errors, 'form':form}
         return render(self.request, self.template_name, context)
 
@@ -96,19 +92,16 @@ class UpdatePasswordView(UpdateView):
     success_url = '/A01/'
 
     def form_invalid(self, form):
-        # field validation error를 처리한다.
-        for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
-            if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
-                for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
                     context = {'message': err, 'form':form}
                     return render(self.request, self.template_name, context)
 
-        # non-field validation error 및 기타 error를 처리한다.
         context = {'message': form.errors, 'form':form}
         return render(self.request, self.template_name, context)
 
     def form_valid(self, form):
-        # 기본적인 validation을 통과한 field를 대상으로 추가 검증을 수행한다.
         data = form.cleaned_data
 
         if data['password1'] != data['password2']:
@@ -128,18 +121,18 @@ class UpdatePasswordView(UpdateView):
         return HttpResponseRedirect(self.success_url)
 
 class LoginUserView(LoginView):
-    pass
-    # form_class = LoginUserForm
-    # template_name = template_name = 'DjangoApps/templates/A01/update-password.html'
+    form_class = LoginUserForm
+    template_name = template_name = 'DjangoApps/templates/A01/update-password.html'
 
-    # def form_invalid(self, form):
-    #     # field validation error를 처리한다.
-    #     for f in self.form_class.Meta.fields:   # form의 모든 field에 대하여
-    #         if form.has_error(f):               # validation error가 있는지 확인한 후 있으면
-    #             for err in form.errors[f]:      # 그 error에 관한 messages를 포함하여 render 한다.
-    #                 context = {'message': err, 'form':form}
-    #                 return render(self.request, self.template_name, context)
+    def form_invalid(self, form):
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
+                    context = {'message': err, 'form':form}
+                    return render(self.request, self.template_name, context)
 
-    #     # non-field validation error 및 기타 error를 처리한다.
-    #     context = {'message': form.errors, 'form':form}
-    #     return render(self.request, self.template_name, context)
+        # non-field validation error 및 기타 error를 처리한다.
+        for err in form.errors['__all__']:
+            context = {'message': err, 'form':form}
+            return render(self.request, self.template_name, context)
+        

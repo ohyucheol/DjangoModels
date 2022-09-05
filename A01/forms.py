@@ -2,7 +2,7 @@ import json, os
 
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.validators import ASCIIUsernameValidator
 
 from django.core.validators import RegexValidator, EmailValidator
@@ -38,6 +38,7 @@ class FormDecorator:
     wid_email = forms.EmailInput(attrs={'class': 'form-control mb-3'})
     wid_password = forms.PasswordInput(attrs={'class': 'form-control mb-3'})
 
+# password validation(8자 이상) 등을 사용하지 않기 위하여 UserCreationForm 대신 ModelForm을 사용하였다.
 class CreateUserForm(forms.ModelForm):
     d = FormDecorator()
 
@@ -85,13 +86,16 @@ class UpdatePasswordForm(forms.ModelForm):
 
 class LoginUserForm(AuthenticationForm):
     pass
-#     d = FormDecorator()
+    d = FormDecorator()
 
-#     username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
-#     password = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
+    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
+    password = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
 
-#     class Meta:
-#         fields = ['username', 'password']
+    error_messages = { 'invalid_login': '일치하는 정보를 찾을 수 없습니다. 아이디와 비밀번호를 확인하세요', 'inactive': '비활성화 된 계정입니다. 관리자에게 문의하세요', }
+    
+    # ModelForm이 아니므로 Meta가 필수는 아니지만 form_invalid()에서의 error 처리 코드를 재사용하기 위하여 정의하였다.
+    class Meta:
+        fields = ['username', 'password']
 
 
 
