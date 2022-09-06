@@ -1,5 +1,4 @@
-from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
-                    UpdatePasswordForm, FormDecorator, LoginUserForm
+import os, json
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
@@ -8,9 +7,11 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
-
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+
+from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
+                    UpdatePasswordForm, UpdateBannedKeywordForm, LoginUserForm
 
 # Create your views here.
 
@@ -139,3 +140,55 @@ class LoginUserView(LoginView):
 class LogoutUserView(LogoutView):
     form_class = LoginUserForm
     template_name = 'DjangoApps/templates/A01/login-user.html'
+
+class UpdateBannedKeywordView(FormView):
+    form_class = UpdateBannedKeywordForm
+    template_name = 'DjangoApps/templates/A01/update-banned-keyword.html'
+    success_url = '/A01/update-banned-keyword'
+
+    def get_initial(self):
+        # banned.json의 구조
+        # {
+        # "full": ["alfa", "bravo", "charile"],
+        # "part": ["delta", "echo", "foxtrot"]
+        # }
+        path = os.path.dirname(__file__) + '/banned.json'
+        file = open(path)
+        banned_keyword = json.load(file)
+
+        full = '' ; part = ''
+
+        for b in banned_keyword['full']:
+            full = full + b + ' '
+
+        for b in banned_keyword['part']:
+            part = part + b + ' '
+
+        self.initial['full'] = full
+        self.initial['part'] = part
+
+        return self.initial
+
+    def form_invalid(self, form):
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
+                    context = {'message': err, 'form':form}
+                    return render(self.request, self.template_name, context)
+
+        context = {'message': form.errors, 'form':form}
+        return render(self.request, self.template_name, context)
+
+    def form_valid(self, form):
+        data = form.cleaned_data #string
+
+        banned_keyword = {}
+        banned_keyword['full'] = data['full'].split()
+        banned_keyword['part'] = data['part'].split()
+
+        path = os.path.dirname(__file__) + '/banned.json'
+        file = open(path, 'w')
+
+        json.dump(banned_keyword, file)
+
+        return HttpResponseRedirect(self.success_url)
