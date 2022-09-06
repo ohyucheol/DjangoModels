@@ -1,4 +1,4 @@
-import json, os
+import json, os, time
 
 from django import forms
 from django.contrib.auth.models import User
@@ -20,6 +20,8 @@ class FormDecorator:
         file = open(path)
         banned_keyword = json.load(file)
 
+        start = time.time()
+
         for k in banned_keyword['full']:
             if username == k:
                 raise ValidationError( '"%(banned)s"는 사용할 수 없는 아이디입니다', params={'banned': k})
@@ -27,6 +29,10 @@ class FormDecorator:
         for k in banned_keyword['part']:
             if k in username:
                 raise ValidationError( '아이디에 "%(banned)s"를 포함할 수 없습니다', params={'banned': k})
+
+        end = time.time()
+
+        print(f"{end - start:.9f} sec")
 
     val_azAZ09 = RegexValidator(regex='^([a-zA-Z0-9])+$')
     val_email = EmailValidator()
