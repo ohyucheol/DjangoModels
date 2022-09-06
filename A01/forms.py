@@ -11,12 +11,12 @@ from django.core.exceptions import ValidationError
 # validator, validation error, widget 등의 구성을 위한 FormDecorator
 class FormDecorator:
     def val_banned_keyword(self, username):
-        # banned.json의 구조
+        # banned-keyword.json의 구조
         # {
         # "full": ["alfa", "bravo", "charile"],
         # "part": ["delta", "echo", "foxtrot"]
         # }
-        path = os.path.dirname(__file__) + '/banned.json'
+        path = os.path.dirname(__file__) + '/banned-keyword.json'
         file = open(path)
         banned_keyword = json.load(file)
 

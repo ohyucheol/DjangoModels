@@ -72,8 +72,8 @@ class LogoutUserView(LogoutView):
     form_class = LoginUserForm
     template_name = 'DjangoApps/templates/A01/login-user.html'
 
-class PersonalUserView(TemplateView):
-    template_name = "DjangoApps/templates/A01/personal-user.html"
+class MyPageView(TemplateView):
+    template_name = "DjangoApps/templates/A01/mypage.html"
 
     def get_context_data(self, **kwargs):
         page_owner = User.objects.get(username=kwargs['username'])
@@ -157,12 +157,12 @@ class UpdateBannedKeywordView(FormView):
     success_url = '/A01/update-banned-keyword'
 
     def get_initial(self):
-        # banned.json의 구조
+        # banned-keyword.json의 구조
         # {
         # "full": ["alfa", "bravo", "charile"],
         # "part": ["delta", "echo", "foxtrot"]
         # }
-        path = os.path.dirname(__file__) + '/banned.json'
+        path = os.path.dirname(__file__) + '/banned-keyword.json'
         file = open(path)
         banned_keyword = json.load(file)
 
@@ -196,7 +196,7 @@ class UpdateBannedKeywordView(FormView):
         banned_keyword['full'] = data['full'].split()
         banned_keyword['part'] = data['part'].split()
 
-        path = os.path.dirname(__file__) + '/banned.json'
+        path = os.path.dirname(__file__) + '/banned-keyword.json'
         file = open(path, 'w')
 
         json.dump(banned_keyword, file)

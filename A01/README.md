@@ -17,7 +17,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 5. 이용자는 example.com/golf**sucks**와 같이 甲에 소속된 그룹 또는 가수의 명성을 손상시킬 수 있거나 공서양속에 반하는 단어를 username에 포함할 수 없다.
 6. 이용자는 example.com/**Z**, example.com/**yankee**과 같이 甲과 경업관계에 있는 연예기획사 乙에 소속된 그룹의 명칭 또는 가수의 이름을 username에 포함할 수 없다.
 7. 甲은 username의 전부 또는 일부로 사용할 수 없는 단어를 추가, 삭제, 변경할 수 있다.
-8. 甲은 부적절한 username을 사용하는 이용자에게 username의 변경을 요청할 수 있으며 상당한 기간이 지난 후에도 username을 변경하지 않는 경우 그 username을 url로 하는 개인 페이지로의 접속을 차단할 수 있다.
+8. 甲은 부적절한 username을 사용하는 이용자에게 username의 변경을 요청할 수 있으며 상당한 기간이 지난 후에도 username을 변경하지 않는 경우 그 이용자의 서비스 이용을 제한할 수 있다.
 
 ### 법률, 시행령, 시행규칙 등
 1. **상표법 제2조(정의)제1항제11호, 제2항**
@@ -58,9 +58,13 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 
 ### (사실상의)표준, 관습, 실무사례, 문헌 등
 1. ISO 기본 로마자 및 아라비아 숫자(ISO/IEC 646)
-* 정규표현식 ([a-zA-Z0-9])+
+* 정규표현식
+	* 로마자와 아라비아 숫자만을 허용하는 경우 : ^([a-zA-Z0-9])+$
+	* 로마자, 아라비아 숫자 및 공백만을 허용하는 경우 : ^([a-zA-Z0-9\s])+$
+
 2. 네이버쇼핑 스마트스토어
 * smartstore.naver.com/**username**
+
 3. 인스타그램
 * instagram.com/**username**
 
@@ -74,8 +78,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 2. class CreateUserView(CreateView):
 3. class LoginUserView(LoginView):
 4. class LogoutUserView(LogoutView):
-5. class PersonalUserView(TemplateView):
-* 각 이용자의 개인 페이지
+5. class MyPageView(TemplateView):
 6. class UpdateUsernameView(UpdateView):
 7. class UpdateEmailView(UpdateView):
 8. class UpdatePasswordView(UpdateView):
@@ -97,8 +100,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 2. about.html
 3. create-user.html
 4. login-user.html
-5. personal-user.html
-* 각 이용자의 개인페이지
+5. mypage.html
 6. nav.html
 * 다음 7 내지 10호의 템플릿에서 좌측 사이드바 내비게이션으로 사용된다.
 7. update-username.html
@@ -107,7 +109,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 10. update-banned-keyword.html
 
 ### 기타
-1. banned.json
+1. banned-keyword.json
 * 금칙어 목록을 저장한 파일로써 아이디로 사용할 수 없는 단어는 'full', 아이디에 포함할 수 없는 단어는 'part'로 구분하며 다음과 같은 형식으로 구성된다.
 ```json
 {
@@ -115,7 +117,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 	"part": ["delta", "echo", "foxtrot"]
 }
 ```
-* username과 금칙어를 비교하는 작업에 소요되는 시간은 다음과 같다
+* username과 금칙어를 비교하는 작업에 소요되는 시간은 다음과 같다.
 	* full, part 각   100건 : 평균 0.0000091초(5회 수행)
 	* full, part 각  3600건 : 평균 0.000025초(5회 수행)
 	* full, part 각 14400건 : 평균 0.00082초(5회 수행)
