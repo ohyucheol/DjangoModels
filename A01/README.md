@@ -9,7 +9,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 
 ## 설계의 기준
 ### 기본 시나리오
-연예기획사 甲은 인기 아이돌 그룹 A, B와 전속계약을 체결하였다. A 그룹의 멤버는 alfa, bravo, charlie 이고, B 그룹의 멤버는 delta, echo, foxtrot, golf, hotel이다. 甲은 소속 그룹의 팬들을 위하여 웹 서비스를 제공하고자 한다. 서비스의 회원가입과 관련한 甲의 요구사항은 다음과 같다.
+연예기획사 甲은 인기 아이돌 그룹 A, B와 전속계약을 체결하였다. A 그룹의 멤버는 alfa, bravo, charlie 이고, B 그룹의 멤버는 delta, echo, foxtrot, golf, hotel이다. 甲은 자사 소속 그룹의 팬들을 대상으로 팬 상호간 자신이 촬영·제작한 사진, 영상 또는 이를 이용한 2차저작물, 기념품 등을 공유·판매할 수 있는 웹 서비스를 제공하고자 한다. 서비스의 회원가입과 관련한 甲의 요구사항은 다음과 같다.
 1. 가입시 각 이용자마다 example.com/**username**과 같이 자신의 username을 url로 하는 개인 페이지를 할당한다.
 2. 이용자는 example.com/bigfanof**A**, example.com/ilove**charlie**와 같이 甲에 소속된 그룹의 명칭 또는 가수의 이름을 자신의 username에 포함할 수 있다.
 3. 이용자는 example.com/**B**, example.com/**delta**과 같이 甲에 소속된 그룹의 명칭 또는 가수의 이름만으로 된 username으로 가입할 수 없다.
