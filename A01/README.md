@@ -17,7 +17,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 5. 이용자는 example.com/golf**sucks**와 같이 甲에 소속된 그룹 또는 가수의 명성을 손상시킬 수 있거나 공서양속에 반하는 단어를 username에 포함할 수 없다.
 6. 이용자는 example.com/**Z**, example.com/**yankee**과 같이 甲과 경업관계에 있는 연예기획사 乙에 소속된 그룹의 명칭 또는 가수의 이름을 username에 포함할 수 없다.
 7. 甲은 username의 전부 또는 일부로 사용할 수 없는 단어를 추가, 삭제, 변경할 수 있다.
-8. 甲은 부적절한 username을 사용하는 이용자에게 username의 변경을 요청할 수 있으며 상당한 기간이 지난 후에도 username을 변경하지 않는 경우 그 username을 url로 하는 개인 페이지로의 접속을 차단하거나 강제로 username을 변경할 수 있다.
+8. 甲은 부적절한 username을 사용하는 이용자에게 username의 변경을 요청할 수 있으며 상당한 기간이 지난 후에도 username을 변경하지 않는 경우 그 username을 url로 하는 개인 페이지로의 접속을 차단할 수 있다.
 
 ### 법률, 시행령, 시행규칙 등
 1. **상표법 제2조(정의)제1항제11호, 제2항**
@@ -66,5 +66,48 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 
 ## 구현의 대상
 ### 모델(Model)
+1. class User(AbstractUser):
+* django.contrib.auth.models의 기본 User 모델을 그대로 사용한다.
+
 ### 뷰(View)
+1. class About(TemplateView):
+2. class CreateUserView(CreateView):
+3. class LoginUserView(LoginView):
+4. class LogoutUserView(LogoutView):
+5. class UpdateUsernameView(UpdateView):
+6. class UpdateEmailView(UpdateView):
+7. class UpdatePasswordView(UpdateView):
+8. class UpdateBannedKeywordView(FormView):
+
+### 폼(Form)
+1. class CreateUserForm(forms.ModelForm):
+2. class LoginUserForm(AuthenticationForm):
+3. class UpdateUsernameForm(forms.ModelForm):
+4. class UpdateEmailForm(forms.ModelForm):
+5. class UpdatePasswordForm(forms.ModelForm):
+6. class UpdateBannedKeywordForm(forms.Form):
+7. class FormDecorator:
+* validator, (field)error_message, widget의 관리를 위한 클래스로써 각 Form에서 사용된다.
+
 ### 템플릿(Template)
+1. base.html
+* 다음 2 내지 9호의 템플릿에서 상단 헤더로 사용된다.
+2. about.html
+3. create-user.html
+4. login-user.html
+5. nav.html
+* 다음 6 내지 9호의 템플릿에서 좌측 사이드바 내비게이션으로 사용된다.
+6. update-username.html
+7. update-email.html
+8. update-password.html
+9. update-banned-keyword.html
+
+### 기타
+1. banned.json
+* 금칙어 목록을 저장한 파일로써 아이디로 사용할 수 없는 단어는 'full', 아이디에 포함할 수 없는 단어는 'part'로 구분하며 다음과 같은 형식으로 구성된다.
+```json
+{
+	"full": ["alfa", "bravo", "charlie"],
+	"part": ["delta", "echo", "foxtrot"]
+}
+```

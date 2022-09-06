@@ -52,6 +52,26 @@ class CreateUserView(CreateView):
         login(self.request, user)
         return HttpResponseRedirect(self.success_url)
 
+class LoginUserView(LoginView):
+    form_class = LoginUserForm
+    template_name = template_name = 'DjangoApps/templates/A01/login-user.html'
+
+    def form_invalid(self, form):
+        for f in self.form_class.Meta.fields:
+            if form.has_error(f):
+                for err in form.errors[f]:
+                    context = {'message': err, 'form':form}
+                    return render(self.request, self.template_name, context)
+
+        # non-field validation error 및 기타 error를 처리한다.
+        for err in form.errors['__all__']:
+            context = {'message': err, 'form':form}
+            return render(self.request, self.template_name, context)
+
+class LogoutUserView(LogoutView):
+    form_class = LoginUserForm
+    template_name = 'DjangoApps/templates/A01/login-user.html'
+    
 class UpdateUsernameView(UpdateView):
     model = User
     form_class = UpdateUsernameForm
@@ -120,26 +140,6 @@ class UpdatePasswordView(UpdateView):
         user.save() 
         login(self.request, user)
         return HttpResponseRedirect(self.success_url)
-
-class LoginUserView(LoginView):
-    form_class = LoginUserForm
-    template_name = template_name = 'DjangoApps/templates/A01/login-user.html'
-
-    def form_invalid(self, form):
-        for f in self.form_class.Meta.fields:
-            if form.has_error(f):
-                for err in form.errors[f]:
-                    context = {'message': err, 'form':form}
-                    return render(self.request, self.template_name, context)
-
-        # non-field validation error 및 기타 error를 처리한다.
-        for err in form.errors['__all__']:
-            context = {'message': err, 'form':form}
-            return render(self.request, self.template_name, context)
-
-class LogoutUserView(LogoutView):
-    form_class = LoginUserForm
-    template_name = 'DjangoApps/templates/A01/login-user.html'
 
 class UpdateBannedKeywordView(FormView):
     form_class = UpdateBannedKeywordForm
