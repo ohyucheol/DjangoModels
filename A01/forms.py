@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 
 # validator, validation error, widget 등의 구성을 위한 FormDecorator
 class FormDecorator:
-    def val_banned(self, username):
+    def val_banned_keyword(self, username):
         # banned.json의 구조
         # {
         # "full": ["alfa", "bravo", "charile"],
@@ -56,7 +56,7 @@ class CreateUserForm(forms.ModelForm):
     # 예컨대 email의 경우 입력하지 않는다면 required 속성에 의하여 한 번, EmailValidator()에 의하여 한 번,
     # 총 두 번의 required error가 발생한다.
 
-    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
+    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned_keyword], label='아이디')
     email = forms.EmailField(widget=d.wid_email, error_messages=d.err_email, validators=[d.val_email], label='이메일')
     password1 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
     password2 = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호확인')
@@ -95,7 +95,7 @@ class UpdatePasswordForm(forms.ModelForm):
 
 class LoginUserForm(AuthenticationForm):
     d = FormDecorator()
-    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned], label='아이디')
+    username = forms.CharField(widget=d.wid_text, error_messages=d.err_username, validators=[d.val_azAZ09, d.val_banned_keyword], label='아이디')
     password = forms.CharField(widget=d.wid_password, error_messages=d.err_password, label='비밀번호')
 
     error_messages = { 'invalid_login': '일치하는 정보를 찾을 수 없습니다. 아이디와 비밀번호를 확인하세요', 'inactive': '비활성화 된 계정입니다. 관리자에게 문의하세요', }
