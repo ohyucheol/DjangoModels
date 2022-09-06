@@ -122,4 +122,12 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 	* 측정환경
 		* MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
 		* Processor : 2.3 GHz 쿼드 코어 Intel Core i7
-		* RAM : 32GB 3733 MHz LPDDR4X)
+		* RAM : 32GB 3733 MHz LPDDR4X
+
+2. settings.py
+* LoginView, LogoutView를 사용하는 경우 다음과 같이 redirect url을 설정해 주어야 한다.
+	* LOGIN_REDIRECT_URL = '/A01/'
+	* LOGOUT_REDIRECT_URL = '/A01/'
+
+* 이용자가 가입한 이후 금칙어 정책이 변경되는 등의 이유로 그 이용자의 username에 금칙어가 포함되는 경우 관리자는 그 계정을 비활성화 할 수 있다. Django는 기본적으로 비활성화(inactive)된 이용자를 authenticate()를 이용하여 찾을 수 없으므로 비활성화 된 계정으로 로그인을 시도하면 invalid_login error가 발생한다. 이때 비활성화된 이용자의 로그인시 inactive error를 발생시키기 위해서는 다음과 같이 authentication backend를 변경해주어야 한다.
+	* AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
