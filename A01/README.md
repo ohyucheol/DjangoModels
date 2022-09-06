@@ -127,7 +127,7 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 		* RAM : 32GB 3733 MHz LPDDR4X
 
 2. settings.py
-* LoginView, LogoutView를 사용하는 경우 다음과 같이 redirect url을 설정해 주어야 한다.
+* LoginView, LogoutView를 사용하는 경우 다음과 같이 redirect url을 설정해주어야 한다.
 ```python
 	LOGIN_REDIRECT_URL = '/A01/'
 	LOGOUT_REDIRECT_URL = '/A01/'
