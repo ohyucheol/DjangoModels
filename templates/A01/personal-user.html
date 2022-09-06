@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+
+{% block title %}A01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">A01: 개인 페이지</h1>
+    <hr/>
+    
+    <h2 class="h2">{{ page_owner.username }}의 페이지입니다</h2>
+    <p>{{ page_owner.username }}의 회원번호 : {{ page_owner.id }}</p>
+    <p>{{ page_owner.username }}의 가입일 : {{ page_owner.date_joined }}</p>
+    <p>{{ page_owner.username }}의 마지막 접속 : {{ page_owner.last_login }}</p>
+    <hr/>
+
+  </div>
+
+{% endblock %}

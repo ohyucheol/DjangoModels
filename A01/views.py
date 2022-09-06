@@ -71,7 +71,17 @@ class LoginUserView(LoginView):
 class LogoutUserView(LogoutView):
     form_class = LoginUserForm
     template_name = 'DjangoApps/templates/A01/login-user.html'
-    
+
+class PersonalUserView(TemplateView):
+    template_name = "DjangoApps/templates/A01/personal-user.html"
+
+    def get_context_data(self, **kwargs):
+        page_owner = User.objects.get(username=kwargs['username'])
+        self.extra_context = {'page_owner' : page_owner}
+        kwargs.update(self.extra_context)
+        
+        return kwargs
+
 class UpdateUsernameView(UpdateView):
     model = User
     form_class = UpdateUsernameForm

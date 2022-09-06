@@ -74,10 +74,12 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 2. class CreateUserView(CreateView):
 3. class LoginUserView(LoginView):
 4. class LogoutUserView(LogoutView):
-5. class UpdateUsernameView(UpdateView):
-6. class UpdateEmailView(UpdateView):
-7. class UpdatePasswordView(UpdateView):
-8. class UpdateBannedKeywordView(FormView):
+5. class PersonalUserView(TemplateView):
+* 각 이용자의 개인 페이지
+6. class UpdateUsernameView(UpdateView):
+7. class UpdateEmailView(UpdateView):
+8. class UpdatePasswordView(UpdateView):
+9. class UpdateBannedKeywordView(FormView):
 
 ### 폼(Form)
 1. class CreateUserForm(forms.ModelForm):
@@ -91,16 +93,18 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 
 ### 템플릿(Template)
 1. base.html
-* 다음 2 내지 9호의 템플릿에서 상단 헤더로 사용된다.
+* 다음 2 내지 10호의 템플릿에서 상단 헤더로 사용된다.
 2. about.html
 3. create-user.html
 4. login-user.html
-5. nav.html
-* 다음 6 내지 9호의 템플릿에서 좌측 사이드바 내비게이션으로 사용된다.
-6. update-username.html
-7. update-email.html
-8. update-password.html
-9. update-banned-keyword.html
+5. personal-user.html
+* 각 이용자의 개인페이지
+6. nav.html
+* 다음 7 내지 10호의 템플릿에서 좌측 사이드바 내비게이션으로 사용된다.
+7. update-username.html
+8. update-email.html
+9. update-password.html
+10. update-banned-keyword.html
 
 ### 기타
 1. banned.json

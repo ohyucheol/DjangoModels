@@ -16,17 +16,22 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'A01:update-username' pk=request.user.id %}">
+              <a class="nav-link" href="{% url 'A01:personal' username=user %}">
+                <i class="bi bi-emoji-smile"></i><span class="fw-normal mx-2">나의 페이지로</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'A01:update-username' pk=user.id %}">
                 <i class="bi bi-pass"></i><span class="fw-normal mx-2">아이디 변경</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'A01:update-email' pk=request.user.id %}">
+              <a class="nav-link" href="{% url 'A01:update-email' pk=user.id %}">
                 <i class="bi bi-envelope"></i><span class="fw-normal mx-2">이메일 변경</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'A01:update-password' pk=request.user.id %}">
+              <a class="nav-link" href="{% url 'A01:update-password' pk=user.id %}">
                 <i class="bi bi-lock"></i><span class="fw-normal mx-2">비밀번호 변경</span>
               </a>
             </li>
