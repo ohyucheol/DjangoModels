@@ -16,13 +16,21 @@
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item"><a href="{% url 'B01:about' %}">개요 / About(TemplateView)</a></li>
-
+        <li class="list-group-item"><a href="{% url 'B01:check-business-registration-number' %}">회원가입 1단계(사업자등록번호 확인) / CheckBusinessRegistrationNumberView(FormView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:check-business-information' %}">회원가입 2단계(사업자등록정보 확인) / CheckBusinessInformationView(FormView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:create' %}">회원가입 3단계(계정정보 입력) / CreateUserView(CreateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:login' %}">로그인 / LoginUserView(LoginView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:logout' %}">로그아웃 / LogoutUserView(LogoutView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:update-username' pk=user.id %}">아이디 변경 / UpdateUsernameView(UpdateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:update-email' pk=user.id %}">이메일 변경 / UpdateEmailView(UpdateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:update-password' pk=user.id %}">비밀번호 변경 / UpdatePasswordView(UpdateView)</a></li>
       </ul>
     {% else %}
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item"><a href="{% url 'B01:about' %}">개요 / About(TemplateView)</a></li>
-
+        <li class="list-group-item"><a href="{% url 'B01:create' %}">회원가입 / CreateUserView(CreateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:login' %}">로그인 / LoginUserView(LoginView)</a></li>
       </ul>
     {% endif %}
 
