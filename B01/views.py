@@ -16,7 +16,7 @@ from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/A01/about.html"
+    template_name = "DjangoApps/templates/B01/about.html"
 
 class CreateUserView(CreateView):
     model = User

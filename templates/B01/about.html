@@ -1,37 +1,28 @@
 {% extends "../base.html" %}
 
-{% block title %}A01{% endblock %}
+{% block title %}B01{% endblock %}
 
 {% block content %}
     <div class="container mt-3">
-      <h1 class="h1 fw-bold">A01: 개요</h1>
+      <h1 class="h1 fw-bold">B01: 개요</h1>
       <hr/>
 
       
       <h2 class="h2">회원정보</h2>
-        {{ user }}(ID: {{ request.user.id }})
+        {{ user }}(ID: {{ user.id }})
       <hr/>
 
     {% if user.is_authenticated %}
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item"><a href="{% url 'A01:about' %}">개요 / About(TemplateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:create' %}">회원가입 / CreateUserView(CreateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:login' %}">로그인 / LoginUserView(LoginView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:logout' %}">로그아웃 / LogoutUserView(LogoutView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:update-username' pk=request.user.id %}">아이디 변경 / UpdateUsernameView(UpdateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:update-email' pk=request.user.id %}">이메일 변경 / UpdateEmailView(UpdateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:update-password' pk=request.user.id %}">비밀번호 변경 / UpdatePasswordView(UpdateView)</a></li>
-        {% if user.is_staff %}
-        <li class="list-group-item"><a href="{% url 'A01:update-banned-keyword'%}">금칙어 관리 / UpdateBannedKeywordView(FormView)</a></li>
-        {% endif %}
+        <li class="list-group-item"><a href="{% url 'B01:about' %}">개요 / About(TemplateView)</a></li>
+
       </ul>
     {% else %}
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item"><a href="{% url 'A01:about' %}">개요 / About(TemplateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:create' %}">회원가입 / CreateUserView(CreateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'A01:login' %}">로그인 / LoginUserView(LoginView)</a></li>
+        <li class="list-group-item"><a href="{% url 'B01:about' %}">개요 / About(TemplateView)</a></li>
+
       </ul>
     {% endif %}
 
