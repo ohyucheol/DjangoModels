@@ -22,13 +22,13 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 ### 관련 법률, 시행령, 시행규칙 등
 1. 상표법
 * 상표권 침해에 관한 내용 등
-	* 타인의 등록상표를 사용하거나 타인의 등록상표와 동일한 상표를 그 지정상품과 유사한 상품에 사용하거나 타인의 등록상표와 유사한 상표를 그 지정상품과 동일ㆍ유사한 상품에 사용하는 행위
+    * 타인의 등록상표를 사용하거나 타인의 등록상표와 동일한 상표를 그 지정상품과 유사한 상품에 사용하거나 타인의 등록상표와 유사한 상표를 그 지정상품과 동일ㆍ유사한 상품에 사용하는 행위
 
 ### 관련 (사실상의)표준, 관습, 실무사례, 문헌 등
 1. ISO 기본 로마자 및 아라비아 숫자(ISO/IEC 646)
 * 정규표현식
-	* 로마자와 아라비아 숫자만을 허용하는 경우 : ^([a-zA-Z0-9])+$
-	* 로마자, 아라비아 숫자 및 공백만을 허용하는 경우 : ^([a-zA-Z0-9\s])+$
+    * 로마자와 아라비아 숫자만을 허용하는 경우 : ^([a-zA-Z0-9])+$
+    * 로마자, 아라비아 숫자 및 공백만을 허용하는 경우 : ^([a-zA-Z0-9\s])+$
 
 2. 네이버쇼핑 스마트스토어
 * smartstore.naver.com/**username**
@@ -81,26 +81,26 @@ username의 전부 또는 일부가 금칙어에 해당하는지를 판단하기
 * 금칙어 목록을 저장한 파일로써 아이디로 사용할 수 없는 단어는 'full', 아이디에 포함할 수 없는 단어는 'part'로 구분하며 다음과 같은 형식으로 구성된다.
 ```json
 {
-	"full": ["alfa", "bravo", "charlie"],
-	"part": ["delta", "echo", "foxtrot"]
+    "full": ["alfa", "bravo", "charlie"],
+    "part": ["delta", "echo", "foxtrot"]
 }
 ```
 * username과 금칙어를 비교하는 작업에 소요되는 시간은 다음과 같다.
-	* full, part 각   100건 : 평균 0.0000091초(5회 수행)
-	* full, part 각  3600건 : 평균 0.000025초(5회 수행)
-	* full, part 각 14400건 : 평균 0.00082초(5회 수행)
-	* 측정환경
-		* MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
-		* Processor : 2.3 GHz 쿼드 코어 Intel Core i7
-		* RAM : 32GB 3733 MHz LPDDR4X
+    * full, part 각   100건 : 평균 0.0000091초(5회 수행)
+    * full, part 각  3600건 : 평균 0.000025초(5회 수행)
+    * full, part 각 14400건 : 평균 0.00082초(5회 수행)
+    * 측정환경
+        * MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
+        * Processor : 2.3 GHz 쿼드 코어 Intel Core i7
+        * RAM : 32GB 3733 MHz LPDDR4X
 
 2. settings.py
 * LoginView, LogoutView를 사용하는 경우 다음과 같이 redirect url을 설정해주어야 한다.
 ```python
-	LOGIN_REDIRECT_URL = '/A01/'
-	LOGOUT_REDIRECT_URL = '/A01/'
+LOGIN_REDIRECT_URL = '/A01/'
+LOGOUT_REDIRECT_URL = '/A01/'
 ```
 * 이용자가 가입한 이후 금칙어 정책이 변경되는 등의 이유로 이용자의 username에 금칙어가 포함되는 경우 관리자는 그 계정을 비활성화 할 수 있다. Django는 기본적으로 비활성화(inactive)된 이용자를 authenticate()를 이용하여 찾을 수 없으므로 비활성화 된 계정으로 로그인을 시도하면 invalid_login error가 발생한다. invalid_login error 만으로는 이용자가 자신이 가입하지 않은 것인지(또는 탈퇴한 것인지) 계정이 정지된 것인지 알 수 없으므로 비활성화된 계정의 로그인 시도에 대하여 inactive error를 발생시키기 위해서는 다음과 같이 authentication backend를 변경해주어야 한다.
 ```python
-	AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 ```
