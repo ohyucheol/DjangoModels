@@ -45,4 +45,23 @@ A 문학관을 운영하는 재단법인 甲은 매달 마지막 수요일에 �
 * 약력(history / TextField)
 
 ### 뷰(View)
+1. class About(TemplateView):
+2. class ListNovelWriterView(ListView):
+3. class DetailNovelWriterView(DetailView):
+4. class CreateNovelWriterView(CreateView):
+5. class UpdateNovelWriterView(UpdateView):
+6. class DeleteNovelWriterView(DeleteView):
+
+### 폼(Form)
+1. class NovelWriterModelForm(forms.ModelForm):
+
 ### 템플릿(Template)
+1. base.html
+2. about.html
+3. list-writer.html
+4. detail-writer.html
+5. create-writer.html
+6. update-writer.html
+7. delete-writer.html
+
+### 기타
