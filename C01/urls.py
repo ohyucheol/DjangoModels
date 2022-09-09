@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import About, NovelWriterListView, NovelWriterDetailView, NovelWriterCreateView, \
-                    NovelWriterUpdateView, NovelWriterDeleteView
+from .views import About, ListNovelWriterView, DetailNovelWriterView, CreateNovelWriterView, \
+                    UpdateNovelWriterView, DeleteNovelWriterView
 
 
 app_name = 'C01'
@@ -8,9 +8,9 @@ app_name = 'C01'
 urlpatterns = [
     path('', About.as_view(), name='about'),
 
-    path('novel-writer/', NovelWriterListView.as_view(), name='writer-list'),
-    path('novel-writer/create/', NovelWriterCreateView.as_view(), name='writer-create'),
-    path('novel-writer/<int:pk>/', NovelWriterDetailView.as_view(), name='writer-detail'),
-    path('novel-writer/<int:pk>/update/', NovelWriterUpdateView.as_view(), name='writer-update'),
-    path('novel-writer/<int:pk>/delete/', NovelWriterDeleteView.as_view(), name='writer-delete'),
+    path('list/', ListNovelWriterView.as_view(), name='list'),
+    path('create/', CreateNovelWriterView.as_view(), name='create'),
+    path('<int:pk>/', DetailNovelWriterView.as_view(), name='detail'),
+    path('<int:pk>/update/', UpdateNovelWriterView.as_view(), name='update'),
+    path('<int:pk>/delete/', DeleteNovelWriterView.as_view(), name='delete'),
 ]

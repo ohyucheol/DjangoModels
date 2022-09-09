@@ -4,14 +4,14 @@
 
 {% block content %}
 
-  <div class="container mt-3" id="custom-cards">
-    <h1 class="h1 fw-bold">C01</h1>
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">C01: 소설가 삭제</h1>
     <hr/>
 
     <h2>삭제하시겠습니까?</h2>
     <form method="post">
       {% csrf_token %}
-    <input type="submit" value="Delete">
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">확인</button>
     </form>
 
   </div>

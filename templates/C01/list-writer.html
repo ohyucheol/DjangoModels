@@ -5,16 +5,16 @@
 {% block content %}
 
   <div class="container mt-3">
-    <h1 class="h1 fw-bold">C01</h1>
+    <h1 class="h1 fw-bold">C01: 소설가 목록</h1>
     <hr/>
     <div class="row">
       {% for w in writer %}
       <div class="col-lg-3">
-        <img src="{{ w.picture }}" style="width: auto; height: 300px;">
+        <img src="{{ w.picture }}" style="max-width: 200px; height: 300px;">
 
         <h2 class="fw-normal">{{ w.name }}</h2>
         <p>{{ w.greeting }}</p>
-        <p><a class="btn btn-secondary" href="http://{{request.get_host}}/C01/writer/{{ w.id }}">상세보기 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'C01:detail' pk=w.id %}">상세보기 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       {% endfor %}
     </div><!-- /.row -->
