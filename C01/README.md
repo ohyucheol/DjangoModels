@@ -41,7 +41,7 @@ A 문학관을 운영하는 재단법인 甲은 매월 마지막 수요일에 �
 1. 소설가(NovelWriter)
 * 성명(name / CharField)
 * 필명(penname / CharField)
-* *사진(picture / URLField)*
+* **사진(picture / URLField)**
 * 생년월일(birthday / CharField)
 * 출생지(birthplace / CharField)
 * 저서(work / TextField)
@@ -61,7 +61,7 @@ A 문학관을 운영하는 재단법인 甲은 매월 마지막 수요일에 �
 1. class NovelWriterModelForm(forms.ModelForm):
 * 성명(name / CharField)
 * 필명(penname / CharField)
-* *사진 파일(picture_file / FileField)*
+* **사진 파일(picture_file / FileField)**
 	* 모델과 달리 FileField로써 파일을 업로드 할 수 있다.
 * 생년월일(birthday / CharField)
 * 출생지(birthplace / CharField)
@@ -83,7 +83,7 @@ A 문학관을 운영하는 재단법인 甲은 매월 마지막 수요일에 �
 * AWS Python SDK를 사용하는데에 필요한 IAM 등 권한 설정은 완료되어 있는 것으로 간주한다. 
 
 1. AWS Python SDK(Boto3) 설치
-* AWS S3를 사용하기 위해서는 다음과 같이 SDK(Boto3)를 설치하여야 한다.
+* AWS S3를 사용하기 위해서는 다음과 같이 Python SDK(Boto3)를 설치하여야 한다.
 ```bash
 pip install boto3
 ```
