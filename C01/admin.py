@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Writer
+from .models import NovelWriter
 
 # Register your models here.
-class WriterAdmin(admin.ModelAdmin):
-	fields = ('name', 'picture', 'work', 'history', 'greeting')
-	list_display = ['id', 'name', 'picture', 'work', 'history', 'greeting']
+class NovelWriterAdmin(admin.ModelAdmin):
+	fields = ('name', 'penname', 'birthday',  'birthplace', 'picture', 'work', 'history')
+	list_display = ['id', 'name', 'penname', 'birthday',  'birthplace', 'picture', 'work', 'history']
 
-admin.site.register(Writer, WriterAdmin)
+admin.site.register(NovelWriter, NovelWriterAdmin)
