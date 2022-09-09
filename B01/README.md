@@ -47,6 +47,38 @@
 * django.contrib.auth.models의 기본 User 모델을 그대로 사용한다.
 
 ### 뷰(View)
+1. class About(TemplateView):
+2. class CheckBusinessRegistrationNumberView(FormView):
+3. class CheckBusinessInformationView(FormView):
+4. class CreateUserView(CreateView):
+5. class LoginUserView(LoginView):
+6. class LogoutUserView(LogoutView):
+7. class UpdateUsernameView(UpdateView):
+8. class UpdateEmailView(UpdateView):
+9. class UpdatePasswordView(UpdateView):
+
 ### 폼(Form)
+1. class CheckBusinessRegistrationNumberForm(forms.Form):
+2. class CheckBusinessInformationForm(forms.Form):
+3. class CreateUserForm(forms.ModelForm):
+4. class UpdateUsernameForm(forms.ModelForm):
+5. class UpdateEmailForm(forms.ModelForm):
+6. class UpdatePasswordForm(forms.ModelForm):
+7. class LoginUserForm(AuthenticationForm):
+8. class FormDecorator:
+
 ### 템플릿(Template)
+1. base.html
+* 다음 2 내지 10호의 템플릿에서 상단 헤더로 사용된다.
+2. about.html
+3. check-business-registraion-number.html
+4. check-business-information.html
+5. create-user.html
+6. login-user.html
+7. nav.html
+* 다음 8 내지 10호의 템플릿에서 좌측 사이드바 내비게이션으로 사용된다.
+8. update-username.html
+9. update-email.html
+10. update-password.html
+
 ### 기타
