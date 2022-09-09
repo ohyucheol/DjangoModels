@@ -62,7 +62,7 @@ A 문학관을 운영하는 재단법인 甲은 매월 마지막 수요일에 �
 * 성명(name / CharField)
 * 필명(penname / CharField)
 * **사진 파일(picture_file / FileField)**
-	* 모델과 달리 FileField로써 파일을 업로드 할 수 있다.
+	* NovelWriter 모델과 달리 FileField로써 파일을 업로드 할 수 있다.
 * 생년월일(birthday / CharField)
 * 출생지(birthplace / CharField)
 * 저서(work / TextField)
@@ -97,7 +97,7 @@ aws_secret_access_key = YOUR_SECRET_KEY
 ```
 * 또한 AWS의 각 서비스가 동작하는 리전을 설정하여야 한다. Boto3는 기본적으로 \~/.aws/config를 검색하므로 이 파일에 다음과 같이 리전(이 사례에서는 서울 리전)을 저장한다.
 ```bash
-	[default]
+[default]
 region=ap-northeast-2
 ```
 
