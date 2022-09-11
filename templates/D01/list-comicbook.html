@@ -8,6 +8,12 @@
     <h1 class="h1 fw-bold">D01: 만화책 목록</h1>
     <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'D01:about' %}">개요로 돌아가기</a></p>
     <hr/>
+
+    {% if request.GET.tag %}
+      <div class="mb-3">
+        <span class="badge text-bg-primary">{{ request.GET.tag}}</span> 검색결과 <a href="{% url 'D01:list' %}">태그 초기화</a>
+      </div>
+    {% endif %}
     
     <div class="row">
       {% for c in ComicBook %}
@@ -19,7 +25,7 @@
             <p class="card-text">{{ c.author }}</p>
             <p class="card-text">{{ c.genre }} / 
               {% for t in c.tag %}
-                <span class="badge text-bg-primary">{{ t }}</span>
+                <a href="?tag={{ t }}"><span class="badge text-bg-primary">{{ t }}</span></a>
               {% endfor %}
             </p>
           </div>
@@ -36,7 +42,7 @@
   <ul class="pagination justify-content-center mb-3">
     {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr;</a>
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&tag={{ request.GET.tag }}">&larr;</a>
       </li>
     {% else %}
       <li class="page-item disabled">
@@ -56,7 +62,7 @@
 
     {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rarr;</a>
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}&tag={{ request.GET.tag }}">&rarr;</a>
       </li>
     {% else %}
       <li class="page-item disabled">

@@ -14,13 +14,18 @@ class About(TemplateView):
 
 class ListComicBookView(ListView):
     model = ComicBook
-    paginate_by = 12
+    paginate_by = 4
     context_object_name = 'ComicBook'
     template_name = 'DjangoApps/templates/D01/list-comicbook.html'
 
     def get_queryset(self):
+
         # 기본 queryset을 가져온다.
         queryset = super().get_queryset()
+
+        # tag가 설정되어 있는 경우 해당 tag를 포함하는 ComicBook queryset을 가져온다.
+        if 'tag' in self.request.GET:
+            queryset = ComicBook.objects.all().filter(tag__contains=self.request.GET['tag'])
 
         # 가져온 queryset의 모든 ComicBook object에 대하여 공백으로 구분된 tag 값을 list로 변경한다.
         for q in queryset:
