@@ -49,12 +49,12 @@ class CreateNovelWriterView(CreateView):
 
         if data['picture_file'] != None:
             s3 = boto3.resource('s3')
-            bucket = s3.Bucket('testbucket.djangoapps')
+            bucket = s3.Bucket(settings.BUCKET)
             uploaded_picture = bucket.put_object(Body=data['picture_file'], Key=settings.PREFIX_C01 + '/' + data['picture_file'].name)
 
             encoded_key = parse.quote(uploaded_picture.key)
             # 저장된 object의 picture field에 url을 입력한다.
-            self.object.picture = 'https://s3.ap-northeast-2.amazonaws.com/testbucket.djangoapps/' + encoded_key
+            self.object.picture = settings.S3_HOST + encoded_key
 
         return super().form_valid(form)
 
@@ -79,7 +79,7 @@ class UpdateNovelWriterView(UpdateView):
 
         if data['picture_file'] != None:
             s3 = boto3.resource('s3')
-            bucket = s3.Bucket(settings.BUCKET_C01)
+            bucket = s3.Bucket(settings.BUCKET)
             uploaded_picture = bucket.put_object(Body=data['picture_file'], Key=settings.PREFIX_C01 + '/' + data['picture_file'].name)
 
             encoded_key = parse.quote(uploaded_picture.key)
