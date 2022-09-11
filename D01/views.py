@@ -12,7 +12,7 @@ class About(TemplateView):
 class ListComicBookView(ListView):
     model = ComicBook
     paginate_by = 12
-    context_object_name = 'books'
+    context_object_name = 'ComicBook'
     template_name = 'DjangoApps/templates/D01/list-comicbook.html'
 
 class CreateComicBookView(CreateView):

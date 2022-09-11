@@ -1,0 +1,26 @@
+{% extends "../base.html" %}
+
+{% block title %}D01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">D01: 만화책 생성</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'D01:about' %}">개요로 돌아가기</a></p>
+    <hr/>
+
+    {% if message %}
+      <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        <label class="form-label fs-5 fw-semibold">{{ field.label }}</label>
+        {{ field }}
+      {% endfor %}
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">확인</button>
+    </form>
+
+  </div>
+
+{% endblock %}
