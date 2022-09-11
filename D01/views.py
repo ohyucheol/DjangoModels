@@ -1,4 +1,4 @@
-import boto3, json
+import boto3
 from urllib import parse
 from django.conf import settings
 from django.shortcuts import render
@@ -17,6 +17,15 @@ class ListComicBookView(ListView):
     paginate_by = 12
     context_object_name = 'ComicBook'
     template_name = 'DjangoApps/templates/D01/list-comicbook.html'
+
+    def get_queryset(self):
+        # 기본 queryset을 가져온다.
+        queryset = super().get_queryset()
+
+        # 가져온 queryset의 모든 ComicBook object에 대하여 공백으로 구분된 tag 값을 list로 변경한다.
+        for q in queryset:
+            q.tag = q.tag.split()
+        return queryset
 
 class CreateComicBookView(CreateView):
     model = ComicBook

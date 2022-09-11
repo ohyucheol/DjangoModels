@@ -17,7 +17,11 @@
           <div class="card-body">
             <h5 class="card-title">{{ c.title }} <span class="fs-6">{{ c.number }}</span></h5>
             <p class="card-text">{{ c.author }}</p>
-            <p class="card-text">{{ c.genre }} / {{ c.tag }}</p>
+            <p class="card-text">{{ c.genre }} / 
+              {% for t in c.tag %}
+                <span class="badge text-bg-primary">{{ t }}</span>
+              {% endfor %}
+            </p>
           </div>
           {% if user.is_staff %}
             <a class="btn btn-secondary mb-1" href="{% url 'D01:update' pk=c.id %}">수정</a>
@@ -28,5 +32,37 @@
       {% endfor %}
     </div><!-- /.row -->
   </div>
+
+  <ul class="pagination justify-content-center mb-3">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">&larr;</a>
+      </li>
+    {% endif %}
+
+    {% if request.GET.page is None %}
+      <li class="page-item active">
+        <span class="page-link">1</span>
+      </li>
+    {% else %}
+      <li class="page-item active">
+        <span class="page-link">{{ request.GET.page }}</span>
+      </li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rarr;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">&rarr;</a>
+      </li>
+    {% endif %}
+  </ul>
 
 {% endblock %}
