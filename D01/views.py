@@ -1,4 +1,4 @@
-import boto3
+import boto3, json
 from urllib import parse
 from django.conf import settings
 from django.shortcuts import render
@@ -46,7 +46,7 @@ class CreateComicBookView(CreateView):
 
             encoded_key = parse.quote(uploaded_cover.key)
 
-            self.object.cover = settings.S3_HOST + encoded_key
+            self.object.cover = settings.S3_HOST + '/' + settings.BUCKET + '/' + encoded_key
 
         return super().form_valid(form)
 
@@ -76,7 +76,7 @@ class UpdateComicBookView(UpdateView):
 
             encoded_key = parse.quote(uploaded_cover.key)
             
-            self.object.cover = settings.S3_HOST + encoded_key
+            self.object.cover = settings.S3_HOST + '/' + settings.BUCKET + '/' + encoded_key
 
         return super().form_valid(form)
 
