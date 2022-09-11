@@ -54,7 +54,7 @@ class CreateNovelWriterView(CreateView):
 
             encoded_key = parse.quote(uploaded_picture.key)
             # 저장된 object의 picture field에 url을 입력한다.
-            self.object.picture = settings.S3_HOST + encoded_key
+            self.object.picture = settings.S3_HOST + '/' + settings.BUCKET + '/' + encoded_key
 
         return super().form_valid(form)
 
@@ -83,7 +83,7 @@ class UpdateNovelWriterView(UpdateView):
             uploaded_picture = bucket.put_object(Body=data['picture_file'], Key=settings.PREFIX_C01 + '/' + data['picture_file'].name)
 
             encoded_key = parse.quote(uploaded_picture.key)
-            self.object.picture = settings.S3_HOST + '/' + settings.BUCKET_C01 + '/' + encoded_key
+            self.object.picture = settings.S3_HOST + '/' + settings.BUCKET + '/' + encoded_key
 
         return super().form_valid(form)
 
