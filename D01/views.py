@@ -46,7 +46,7 @@ class CreateComicBookView(CreateView):
 
             encoded_key = parse.quote(uploaded_cover.key)
 
-            self.object.cover = 'https://s3.ap-northeast-2.amazonaws.com/testbucket.djangoapps/' + encoded_key
+            self.object.cover = settings.S3_HOST + encoded_key
 
         return super().form_valid(form)
 
@@ -76,7 +76,7 @@ class UpdateComicBookView(UpdateView):
 
             encoded_key = parse.quote(uploaded_cover.key)
             
-            self.object.cover = 'https://s3.ap-northeast-2.amazonaws.com/testbucket.djangoapps/' + encoded_key
+            self.object.cover = settings.S3_HOST + encoded_key
 
         return super().form_valid(form)
 
