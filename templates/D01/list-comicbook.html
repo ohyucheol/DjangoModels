@@ -19,6 +19,10 @@
             <p class="card-text">{{ c.author }}</p>
             <p class="card-text">{{ c.genre }} / {{ c.tag }}</p>
           </div>
+          {% if user.is_staff %}
+            <a class="btn btn-secondary mb-1" href="{% url 'D01:update' pk=c.id %}">수정</a>
+            <a class="btn btn-danger mb-1" href="{% url 'D01:delete' pk=c.id %}">삭제</a>
+          {% endif %}
         </div>
       </div><!-- /.col-lg-4 -->
       {% endfor %}
