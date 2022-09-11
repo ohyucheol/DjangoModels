@@ -35,7 +35,7 @@ Django에서는 그림 파일을 저장할 수 있는 FileField, ImageField를 �
 ### 모델(Model)
 1. 만화책(ComicBook)
 * 제호(title / CharField)
-* 표지(thumbnail / URLField)
+* 표지(cover / URLField)
 * 권수(number / IntegerField)
 * 작가(author / CharField)
 * ISBN(isbn / CharField)

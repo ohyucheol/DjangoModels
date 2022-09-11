@@ -14,19 +14,19 @@
     {% if user.is_authenticated %}
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">개요 / About(TemplateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">목록 / ListNovelWriterView(ListView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">개요 / About(TemplateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">목록 / ListNovelWriterView(ListView)</a></li>
         <li class="list-group-item">상세 / DetailNovelWriterView(DetailView)</li>
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">생성 / CreateNovelWriterView(CreateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">생성 / CreateNovelWriterView(CreateView)</a></li>
         <li class="list-group-item">수정 / UpdateNovelWriterView(UpdateView)</li>
         <li class="list-group-item">삭제 / DeleteNovelWriterView(DeleteView)</li>
       </ul>
     {% else %}
       <h2 class="h2">뷰(View)</h2>
       <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">개요 / About(TemplateView)</a></li>
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">목록 / ListNovelWriterView(ListView)</a></li>
-        <li class="list-group-item"><a href="{% url 'C01:about' %}">상세 / DetailNovelWriterView(DetailView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">개요 / About(TemplateView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">목록 / ListNovelWriterView(ListView)</a></li>
+        <li class="list-group-item"><a href="{% url 'D01:about' %}">상세 / DetailNovelWriterView(DetailView)</a></li>
       </ul>
     {% endif %}
 

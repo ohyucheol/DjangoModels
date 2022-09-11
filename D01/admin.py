@@ -1,19 +1,9 @@
 from django.contrib import admin
-from .models import Book, Format, DecimalClassification
+from .models import ComicBook
 # Register your models here.
 
-class BookAdmin(admin.ModelAdmin):
-	fields = ('title', 'thumbnail', 'isbn', 'keyword')
-	list_display = ['id', 'title', 'thumbnail', 'isbn', 'keyword']
+class ComicBookAdmin(admin.ModelAdmin):
+	fields = ('title', 'cover', 'number', 'author', 'isbn', 'genre', 'tag')
+	list_display = ['id', 'title', 'cover', 'number', 'author', 'isbn', 'genre', 'tag']
 
-class FormatAdmin(admin.ModelAdmin):
-	fields = ('book_id', 'edition', 'impression', 'binding', 'size', 'page', 'weight')
-	list_display = ['id', 'book_id', 'edition', 'impression', 'binding', 'size', 'page', 'weight']
-
-class DecimalClassificationAdmin(admin.ModelAdmin):
-	fields = ('book_id', 'k_isbn', 'kdc', 'ddc')
-	list_display = ['id', 'book_id', 'k_isbn', 'kdc', 'ddc']
-
-admin.site.register(Book, BookAdmin)
-admin.site.register(Format, FormatAdmin)
-admin.site.register(DecimalClassification, DecimalClassificationAdmin)
+admin.site.register(ComicBook, ComicBookAdmin)
