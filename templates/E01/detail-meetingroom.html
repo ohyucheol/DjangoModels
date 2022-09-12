@@ -25,14 +25,16 @@
         <p class="lead">{{ MeetingRoom.video }}</p>
         <h3>기타시설</h3>
         <p class="lead">{{ MeetingRoom.other }}</p>
-        <h3>상세설명</h3>
-        <p class="lead">{{ MeetingRoom.information }}</p>
-
-        <a class="btn btn-primary" href="{% url 'E01:update' pk=MeetingRoom.id %}">수정</a>
-        <a class="btn btn-danger" href="{% url 'E01:delete' pk=MeetingRoom.id %}">삭제</a>
-
       </div>
     </div>
+
+    <h3>상세설명</h3>
+    <div class="mb-3">
+      {{ MeetingRoom.information | safe }}
+    </div>
+
+    <a class="btn btn-primary" href="{% url 'E01:update' pk=MeetingRoom.id %}">수정</a>
+    <a class="btn btn-danger" href="{% url 'E01:delete' pk=MeetingRoom.id %}">삭제</a>
 
   </div>
 
