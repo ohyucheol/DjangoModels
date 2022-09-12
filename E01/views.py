@@ -3,67 +3,38 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from .models import MeetingRoom, Equipment
-from .forms import MeetingRoomModelForm, EquipmentModelForm
+from .models import MeetingRoom
+from .forms import MeetingRoomModelForm
 # Create your views here.
 
 class About(TemplateView):
     template_name = "DjangoApps/templates/E01/about.html"
 
 # MeetingRoom
-class MeetingRoomListView(ListView):
+class ListMeetingRoomView(ListView):
     model = MeetingRoom
     paginate_by = 12
-    context_object_name = 'meetingroom'
-    template_name = 'DjangoApps/templates/E01/meetingroom-list.html'
+    context_object_name = 'MeetingRoom'
+    template_name = 'DjangoApps/templates/E01/list-meetingroom.html'
 
-class MeetingRoomDetailView(DetailView):
+class DetailMeetingRoomView(DetailView):
     model = MeetingRoom
-    context_object_name = 'meetingroom'
-    template_name = 'DjangoApps/templates/E01/meetingroom-detail.html'
+    context_object_name = 'MeetingRoom'
+    template_name = 'DjangoApps/templates/E01/detail-meetingroom.html'
 
-class MeetingRoomCreateView(CreateView):
-    model = MeetingRoom
-    form_class = MeetingRoomModelForm
-    template_name = 'DjangoApps/templates/E01/meetingroom-form.html'
-    success_url = '/E01/meetingroom/'
-
-class MeetingRoomUpdateView(UpdateView):
+class CreateMeetingRoomView(CreateView):
     model = MeetingRoom
     form_class = MeetingRoomModelForm
-    template_name = 'DjangoApps/templates/E01/meetingroom-form.html'
+    template_name = 'DjangoApps/templates/E01/create-meetingroom.html'
     success_url = '/E01/meetingroom/'
 
-class MeetingRoomDeleteView(DeleteView):
+class UpdateMeetingRoomView(UpdateView):
     model = MeetingRoom
-    template_name = 'DjangoApps/templates/E01/meetingroom-delete.html'
+    form_class = MeetingRoomModelForm
+    template_name = 'DjangoApps/templates/E01/update-meetingroom.html'
     success_url = '/E01/meetingroom/'
 
-#Equipment
-class EquipmentListView(ListView):
-    model = Equipment
-    paginate_by = 12
-    context_object_name = 'equipment'
-    template_name = 'DjangoApps/templates/E01/equipment-list.html'
-
-class EquipmentDetailView(DetailView):
-    model = Equipment
-    context_object_name = 'equipment'
-    template_name = 'DjangoApps/templates/E01/equipment-detail.html'
-
-class EquipmentCreateView(CreateView):
-    model = Equipment
-    form_class = EquipmentModelForm
-    template_name = 'DjangoApps/templates/E01/equipment-form.html'
-    success_url = '/E01/equipment/'
-
-class EquipmentUpdateView(UpdateView):
-    model = Equipment
-    form_class = EquipmentModelForm
-    template_name = 'DjangoApps/templates/E01/equipment-form.html'
-    success_url = '/E01/equipment/'
-
-class EquipmentDeleteView(DeleteView):
-    model = Equipment
-    template_name = 'DjangoApps/templates/E01/equipment-delete.html'
-    success_url = '/E01/equipment/'
+class DeleteMeetingRoomView(DeleteView):
+    model = MeetingRoom
+    template_name = 'DjangoApps/templates/E01/delete-meetingroom.html'
+    success_url = '/E01/meetingroom/'

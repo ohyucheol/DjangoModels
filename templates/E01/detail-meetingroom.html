@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+
+{% block title %}E01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">E01: 회의실 상세</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'E01:about' %}">개요로 돌아가기</a></p>
+    <hr/>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mb-3">
+        <img src="{{ MeetingRoom.picture }}" class="d-block mx-lg-auto img-fluid" width="500" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ MeetingRoom.penname }}</h1>
+        <h2>주소</h2>
+        <p class="lead">{{ MeetingRoom.address }}</p>
+        <h2>면적 / 수용인원</h2>
+        <p class="lead">{{ MeetingRoom.space }} / {{ MeetingRoom.capacity }}</p>
+        <h2>음향시설</h2>
+        <p class="lead">{{ MeetingRoom.audio }}</p>
+        <h2>영상시설</h2>
+        <p class="lead">{{ MeetingRoom.video }}</p>
+        <h2>기타시설</h2>
+        <p class="lead">{{ MeetingRoom.other }}</p>
+        <h2>상세설명</h2>
+        <p class="lead">{{ MeetingRoom.information }}</p>
+
+        <a class="btn btn-primary" href="{% url 'E01:update' pk=MeetingRoom.id %}">수정</a>
+        <a class="btn btn-danger" href="{% url 'E01:delete' pk=MeetingRoom.id %}">삭제</a>
+
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

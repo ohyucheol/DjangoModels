@@ -1,0 +1,63 @@
+{% extends "../base.html" %}
+
+{% block title %}E01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">E01: 회의실 목록</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'E01:about' %}">개요로 돌아가기</a></p>
+    <hr/>
+
+    <div class="row">
+      {% for m in MeetingRoom %}
+      <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card">
+          <img src="{{ c.picture }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ m.name }}</h5>
+            <p class="card-text">{{ m.address }}</p>
+            <p class="card-text">{{ m.space }} / {{ m.capacity }}</p>
+            <p class="card-text">{{ m.audio }}</p>
+            <p class="card-text">{{ m.video }}</p>
+            <p class="card-text">{{ m.other }}</p>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+      {% endfor %}
+    </div><!-- /.row -->
+  </div>
+
+  <ul class="pagination justify-content-center mb-3">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&tag={{ request.GET.tag }}">&larr;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">&larr;</a>
+      </li>
+    {% endif %}
+
+    {% if request.GET.page is None %}
+      <li class="page-item active">
+        <span class="page-link">1</span>
+      </li>
+    {% else %}
+      <li class="page-item active">
+        <span class="page-link">{{ request.GET.page }}</span>
+      </li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}&tag={{ request.GET.tag }}">&rarr;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">&rarr;</a>
+      </li>
+    {% endif %}
+  </ul>
+
+{% endblock %}
