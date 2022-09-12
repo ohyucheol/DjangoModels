@@ -18,7 +18,7 @@ def about(request):
 
 def list(request):
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('testbucket.djangoapps')
+    bucket = s3.Bucket('testbucket.djangoapps/meetingroom')
 
     if request.method == 'POST':
         keys = request.POST.getlist('keys[]')
@@ -59,6 +59,8 @@ def modal_list(request):
         return render(request, 'DjangoApps/templates/J01/modal-list.html', {'objects':objects})
     else:
         objects = bucket.objects.all()
+        # objects = bucket.objects.filter(Prefix='meetingroom/')
+
         return render(request, 'DjangoApps/templates/J01/modal-list.html', {'objects':objects})
 
 @xframe_options_sameorigin
