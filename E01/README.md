@@ -130,4 +130,4 @@ PREFIX_E01 = 'folder-name'
   });
 </script>
 ```
-* *이 tinyMCE의 파일관리 부분은 J01 앱에 의존함.
+(이 tinyMCE의 파일관리 부분은 J01 앱에 의존함.)
