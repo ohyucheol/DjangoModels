@@ -55,4 +55,79 @@ Django에서는 그림 파일을 저장할 수 있는 FileField, ImageField를 �
 * 상세설명(information / TextField)
 
 ### 뷰(View)
+1. class About(TemplateView):
+2. class ListMeetingRoomView(ListView):
+3. class DetailMeetingRoomView(DetailView):
+4. class CreateMeetingRoomView(CreateView):
+5. class UpdateMeetingRoomView(UpdateView):
+6. class DeleteMeetingRoomView(DeleteView):
+
+### 폼(Form)
+1. class MeetingRoomModelForm(forms.ModelForm):
+
 ### 템플릿(Template)
+1. base.html
+2. about.html
+3. list-meetingroom.html
+4. detail-meetingroom.html
+5. create-meetingroom.html
+6. update-meetingroom.html
+7. delete-meetingroom.html
+
+### 기타
+0. AWS IAM 등 권한 설정
+* AWS Python SDK를 사용하는데에 필요한 IAM 등 권한 설정은 완료되어 있는 것으로 간주한다. 
+
+1. AWS Python SDK(Boto3) 설치
+* AWS S3를 사용하기 위해서는 다음과 같이 Python SDK(Boto3)를 설치하여야 한다.
+```bash
+pip install boto3
+```
+
+2. AWS Credntials 및 Region 설정
+* AWS S3를 사용하기 위해서는 Credential을 설정하여야 한다. Boto3는 기본적으로 \~/.aws/credentials을 검색하므로 이 파일에 다음과 같이 키와 시크릿 키를 저장한다.
+```bash
+[default]
+aws_access_key_id = YOUR_ACCESS_KEY
+aws_secret_access_key = YOUR_SECRET_KEY
+```
+* 또한 AWS의 각 서비스가 동작하는 리전을 설정하여야 한다. Boto3는 기본적으로 \~/.aws/config를 검색하므로 이 파일에 다음과 같이 리전(이 사례에서는 서울 리전)을 저장한다.
+```bash
+[default]
+region=ap-northeast-2
+```
+
+3. settings.py
+* AWS S3를 사용하기 위해서는 다음과 같이 호스트, 버킷명, 폴더명을 지정해주어야 한다.
+```python
+HOST = 'https://s3.ap-northeast-2.amazonaws.com' # 서울 리전
+BUCKET = 'bucket-name'
+PREFIX_E01 = 'folder-name'
+```
+
+4. tinyMCE
+* tinyMCE(CDN 호스팅)를 사용하기 위해서는 다음과 같이 필요한 script(tinymce.min.js)를 탑재한 후 texarea를 초기화하는 스크립트를 작성하여야 한다.
+```html
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'image media table preview',
+    menubar: 'edit insert format table help',
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist | upload image media table | preview ',
+    language: 'ko_KR',
+    setup: (editor) => {
+      editor.ui.registry.addButton('upload', {
+        icon: 'gallery',
+        onAction: () => editor.windowManager.openUrl({
+          title: '파일 관리',
+          url: '{% url 'J01:modal-list' %}',
+        })  //onAction
+      }); //editor.ui.registry.addButton
+    }, //setup
+  }).then((editors) => {
+    //do something
+  });
+</script>
+```
+* *이 tinyMCE의 파일관리 부분은 J01 앱에 의존함.
