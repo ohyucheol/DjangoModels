@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('list/', ListMeetingRoomView.as_view(), name='list'),
     path('create/', CreateMeetingRoomView.as_view(), name='create'),
-    path('<int:pk>/', DetailMeetingRoomView.as_view(), name='detail'),
+    path('<int:pk>/detail/', DetailMeetingRoomView.as_view(), name='detail'),
     path('<int:pk>/update/', UpdateMeetingRoomView.as_view(), name='update'),
     path('<int:pk>/delete/', DeleteMeetingRoomView.as_view(), name='delete'),
 ]

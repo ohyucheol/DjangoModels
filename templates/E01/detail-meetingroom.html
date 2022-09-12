@@ -14,18 +14,18 @@
         <img src="{{ MeetingRoom.picture }}" class="d-block mx-lg-auto img-fluid" width="500" height="500" loading="lazy">
       </div>
       <div class="col-lg-6 col-md-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3">{{ MeetingRoom.penname }}</h1>
-        <h2>주소</h2>
+        <h2 class="fw-bold">{{ MeetingRoom.name }}</h2>
+        <h3>주소</h3>
         <p class="lead">{{ MeetingRoom.address }}</p>
-        <h2>면적 / 수용인원</h2>
+        <h3>면적 / 수용인원</h3>
         <p class="lead">{{ MeetingRoom.space }} / {{ MeetingRoom.capacity }}</p>
-        <h2>음향시설</h2>
+        <h3>음향시설</h3>
         <p class="lead">{{ MeetingRoom.audio }}</p>
-        <h2>영상시설</h2>
+        <h3>영상시설</h3>
         <p class="lead">{{ MeetingRoom.video }}</p>
-        <h2>기타시설</h2>
+        <h3>기타시설</h3>
         <p class="lead">{{ MeetingRoom.other }}</p>
-        <h2>상세설명</h2>
+        <h3>상세설명</h3>
         <p class="lead">{{ MeetingRoom.information }}</p>
 
         <a class="btn btn-primary" href="{% url 'E01:update' pk=MeetingRoom.id %}">수정</a>

@@ -20,5 +20,5 @@ class MeetingRoomModelForm(forms.ModelForm):
         }
 
         labels = {
-            'name' : '명칭', 'address' : '주소', 'space' : '면적', 'capacity' : '수용인원', 'audio' : '음향시설', 'video' : '영상시설', 'other' : '기타시설', 'information' : '상세설명'
+            'name' : '명칭', 'address' : '주소', 'space' : '면적(㎡)', 'capacity' : '수용인원(명)', 'audio' : '음향시설', 'video' : '영상시설', 'other' : '기타시설', 'information' : '상세설명'
         }
