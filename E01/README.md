@@ -106,7 +106,7 @@ PREFIX_E01 = 'folder-name'
 ```
 
 4. tinyMCE
-* tinyMCE(CDN 호스팅)를 사용하기 위해서는 다음과 같이 필요한 script(tinymce.min.js)를 탑재한 후 texarea를 초기화하는 스크립트를 작성하여야 한다.
+* tinyMCE(CDN 호스팅)를 사용하기 위해서는 다음과 같이 필요한 스크립트(tinymce.min.js)를 탑재한 후 texarea를 tinyMCE를 이용하여 초기화하여야 한다.
 ```html
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
