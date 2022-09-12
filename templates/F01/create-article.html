@@ -1,0 +1,49 @@
+{% extends "../base.html" %}
+
+{% block title %}F01{% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'image media table preview',
+    menubar: 'edit insert format table help',
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist | upload image media table | preview ',
+    language: 'ko_KR',
+    setup: (editor) => {
+      editor.ui.registry.addButton('upload', {
+        icon: 'gallery',
+        onAction: () => editor.windowManager.openUrl({
+          title: '파일 관리',
+          url: '{% url 'J01:modal-list' %}',
+        })  //onAction
+      }); //editor.ui.registry.addButton
+    }, //setup
+  }).then((editors) => {
+    //do something
+  });
+</script>
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">F01: 게시물 생성</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'F01:about' %}">개요로 돌아가기</a></p>
+    <hr/>
+
+    {% if message %}
+      <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        <label class="form-label fs-5 fw-semibold">{{ field.label }}</label>
+        {{ field }}
+      {% endfor %}
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">확인</button>
+    </form>
+
+  </div>
+
+{% endblock %}

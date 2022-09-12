@@ -1,0 +1,28 @@
+{% extends "../base.html" %}
+
+{% block title %}E01{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-3">
+    <h1 class="h1 fw-bold">E01: 파일 업로드</h1>
+    <hr/>
+
+    <form method="POST" action="{% url 'E01:modal-upload-file' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input name="files" class="form-control" type="file" multiple>
+      </div>
+      <button id="button" type="submit" class="btn btn-primary">업로드</button>
+    </form>
+
+    <hr/>
+    <a href="{% url 'E01:modal-list-file' %}">파일 목록 페이지로 이동</a>
+
+  </div>
+
+<script type="text/javascript">
+  document.getElementById("button").onclick = function(){
+    this.innerHTML = '<span class="spinner-border spinner-border-sm"></span>' };
+</script>
+{% endblock %}

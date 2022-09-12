@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import About, ArticleListView, ArticleUpdateView
+from .views import About, ListArticleView, DetailArticleView, \
+                    CreateArticleView, UpdateArticleView, DeleteArticleView, \
+                    modal_list_file, modal_upload_file
 
 
 app_name = 'F01'
@@ -7,15 +9,12 @@ app_name = 'F01'
 urlpatterns = [
     path('', About.as_view(), name='about'),
 
-    path('article/', ArticleListView.as_view(), name='article-list'),
-    # path('meetingroom/create/', MeetingRoomCreateView.as_view(), name='meetingroom-create'),
-    # path('meetingroom/<int:pk>/', MeetingRoomDetailView.as_view(), name='meetingroom-detail'),
-    path('article/<int:pk>/update/', ArticleUpdateView.as_view(), name='article-update'),
-    # path('meetingroom/<int:pk>/delete/', MeetingRoomDeleteView.as_view(), name='meetingroom-delete'),
+    path('list/', ListArticleView.as_view(), name='list'),
+    path('create/', CreateArticleView.as_view(), name='create'),
+    path('<int:pk>/detail/', DetailArticleView.as_view(), name='detail'),
+    path('<int:pk>/update/', UpdateArticleView.as_view(), name='update'),
+    path('<int:pk>/delete/', DeleteArticleView.as_view(), name='delete'),
 
-    # path('equipment/', EquipmentListView.as_view(), name='equipment-list'),
-    # path('equipment/create/', EquipmentCreateView.as_view(), name='equipment-create'),
-    # path('equipment/<int:pk>/', EquipmentDetailView.as_view(), name='equipment-detail'),
-    # path('equipment/<int:pk>/update/', EquipmentUpdateView.as_view(), name='equipment-update'),
-    # path('equipment/<int:pk>/delete/', EquipmentDeleteView.as_view(), name='equipment-delete'),
+    path('modal-list-file/', modal_list_file, name='modal-list-file'),
+    path('modal-upload-file/', modal_upload_file, name='modal-upload-file'),
 ]
