@@ -126,7 +126,7 @@ PREFIX_E01 = 'folder-name'
         icon: 'gallery',
         onAction: () => editor.windowManager.openUrl({
           title: '파일 관리',
-          url: '{% url 'J01:modal-list' %}',
+          url: '{% url 'E01:modal-list-file' %}',
         })  //onAction
       }); //editor.ui.registry.addButton
     }, //setup
