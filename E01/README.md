@@ -61,12 +61,17 @@ Django에서는 그림 파일을 저장할 수 있는 FileField, ImageField를 �
 4. class CreateMeetingRoomView(CreateView):
 5. class UpdateMeetingRoomView(UpdateView):
 6. class DeleteMeetingRoomView(DeleteView):
+7. def modal_list_file(request):
+* tinyMCE와 AWS S3를 이용하여 파일 목록 표시, 삭제 기능을 수행한다.
+8. def modal_list_upload(request):
+* tinyMCE와 AWS S3를 이용하여 파일 업로드 기능을 수행한다.
 
 ### 폼(Form)
 1. class MeetingRoomModelForm(forms.ModelForm):
 
 ### 템플릿(Template)
 1. base.html
+* 다음 2 내지 7호의 템플릿에서 상단 헤더로 사용된다.
 2. about.html
 3. list-meetingroom.html
 4. detail-meetingroom.html
