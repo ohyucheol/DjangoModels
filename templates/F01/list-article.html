@@ -9,6 +9,12 @@
     <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'F01:about' %}">개요로 돌아가기</a></p>
     <hr/>
 
+    {% if request.GET.tag %}
+      <div class="mb-3">
+        <span class="badge text-bg-primary">{{ request.GET.tag }}</span> 검색결과 <a href="{% url 'F01:list' %}">태그 초기화</a>
+      </div>
+    {% endif %}
+
     <div class="row">
       {% for a in Article %}
       <div class="col-lg-6 mb-3">
@@ -17,8 +23,12 @@
           <div class="card-body">
             <h5 class="card-title">{{ a.title }}</h5>
             <p class="card-text"><span class="fw-bold">작성자 </span>{{ a.user_id }}</p>
-            <p class="card-text"><span class="fw-bold">작성일 / 수정일 </span>{{ a.published }} / {{ a.modified }}</p>
+            <p class="card-text"><span class="fw-bold">작성일 / 수정일 </span>{{ a.published | date:'y년m월d일' }} / {{ a.modified | date:'y년m월d일' }}</p>
             <p class="card-text">{{ a.content | safe | truncatechars:140 }}</p>
+            {% for t in a.tag %}
+              <a href="?tag={{ t }}"><span class="badge text-bg-primary">{{ t }}</span></a>
+            {% endfor %}
+            <hr/>
             <a class="btn btn-primary" href="{% url 'F01:detail' pk=a.id %}">상세보기</a>
           </div>
         </div>
