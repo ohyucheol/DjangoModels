@@ -1,14 +1,14 @@
 {% extends "../base.html" %}
 
-{% block title %}E01{% endblock %}
+{% block title %}D02{% endblock %}
 
 {% block content %}
 
   <div class="container mt-3">
-    <h1 class="h1 fw-bold">E01: 파일 업로드</h1>
+    <h1 class="h1 fw-bold">D02: 파일 업로드</h1>
     <hr/>
 
-    <form method="POST" action="{% url 'E01:modal-upload-file' %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'D02:modal-upload-file' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-3">
         <input name="files" class="form-control" type="file" multiple>
@@ -17,7 +17,7 @@
     </form>
 
     <hr/>
-    <a href="{% url 'E01:modal-list-file' %}">파일 목록 페이지로 이동</a>
+    <a href="{% url 'D02:modal-list-file' %}">파일 목록 페이지로 이동</a>
 
   </div>
 

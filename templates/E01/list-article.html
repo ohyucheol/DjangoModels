@@ -1,17 +1,17 @@
 {% extends "../base.html" %}
 
-{% block title %}F01{% endblock %}
+{% block title %}E01{% endblock %}
 
 {% block content %}
 
   <div class="container mt-3">
-    <h1 class="h1 fw-bold">F01: 게시물 목록</h1>
-    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'F01:about' %}">개요로 돌아가기</a></p>
+    <h1 class="h1 fw-bold">E01: 게시물 목록</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'E01:about' %}">개요로 돌아가기</a></p>
     <hr/>
 
     {% if request.GET.tag %}
       <div class="mb-3">
-        <span class="badge text-bg-primary">{{ request.GET.tag }}</span> 검색결과 <a href="{% url 'F01:list' %}">태그 초기화</a>
+        <span class="badge text-bg-primary">{{ request.GET.tag }}</span> 검색결과 <a href="{% url 'E01:list' %}">태그 초기화</a>
       </div>
     {% endif %}
 
@@ -29,7 +29,7 @@
               <a href="?tag={{ t }}"><span class="badge text-bg-primary">{{ t }}</span></a>
             {% endfor %}
             <hr/>
-            <a class="btn btn-primary" href="{% url 'F01:detail' pk=a.id %}">상세보기</a>
+            <a class="btn btn-primary" href="{% url 'E01:detail' pk=a.id %}">상세보기</a>
           </div>
         </div>
       </div><!-- /.col-lg-4 -->

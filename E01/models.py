@@ -1,13 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class MeetingRoom(models.Model):
-    name = models.CharField(max_length=200)
-    address = models.CharField(max_length=200, blank=True)
-    picture = models.URLField(max_length=200, blank=True)
-    space = models.DecimalField(blank=True, max_digits=5, decimal_places=2)
-    capacity = models.IntegerField(blank=True)
-    audio = models.CharField(max_length=200, blank=True)
-    video = models.CharField(max_length=200, blank=True)
-    other = models.CharField(max_length=200, blank=True)
-    information = models.TextField(max_length=2000, blank=True)
+class Article(models.Model):
+    user_id = models.IntegerField(null=True, blank=True)
+    title = models.CharField(max_length=200)
+    thumbnail = models.URLField(blank=True)
+    content = models.TextField(max_length=3000, blank=True)
+    published = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    tag = models.CharField(max_length=200, blank=True)
+    # is_public = models.BooleanField(default=True)

@@ -1,24 +1,26 @@
+from django.forms import ModelForm
 from django import forms
-from .models import MeetingRoom
+from .models import Article
 
-class MeetingRoomModelForm(forms.ModelForm):
-    picture_file = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control mb-3'}), label='사진')
+class ArticleModelForm(forms.ModelForm):
+    thumbnail_file = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control mb-3'}), label='썸네일')
 
     class Meta:
-        model = MeetingRoom
-        fields = ['name', 'address', 'picture_file', 'space', 'capacity', 'audio', 'video', 'other', 'information']
+        model = Article
+        fields = ['title', 'thumbnail_file', 'content', 'tag']
+        # fields = ['title', 'thumbnail_file', 'content', 'tag', 'is_public']
 
         widgets = {
-            'name' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'address' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'space' : forms.NumberInput(attrs={'class': 'form-control mb-3'}),
-            'capacity' : forms.NumberInput(attrs={'class': 'form-control mb-3'}),
-            'audio' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'video' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'other' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'information' : forms.Textarea(attrs={'class': 'form-control mb-3'}),
+            'title' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'content' : forms.Textarea(attrs={'class': 'form-control mb-3'}),
+            'tag' : forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            # 'is_public' : forms.RadioSelect([('True', '공개'), ('False', '비공개')])
         }
 
         labels = {
-            'name' : '명칭', 'address' : '주소', 'space' : '면적(㎡)', 'capacity' : '수용인원(명)', 'audio' : '음향시설', 'video' : '영상시설', 'other' : '기타시설', 'information' : '상세설명'
+            'title' : '제목',
+            'thumbnail' : '썸네일',
+            'content' : '내용',
+            'tag' : '태그',
+            # 'is_public' : '공개여부',
         }

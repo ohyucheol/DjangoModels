@@ -1,12 +1,12 @@
 {% extends "../base.html" %}
 
-{% block title %}E01{% endblock %}
+{% block title %}D02{% endblock %}
 
 {% block content %}
 
   <div class="container mt-3">
-    <h1 class="h1 fw-bold">E01: 회의실 상세</h1>
-    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'E01:about' %}">개요로 돌아가기</a></p>
+    <h1 class="h1 fw-bold">D02: 회의실 상세</h1>
+    <p><i class="bi bi-sign-turn-left mx-1"></i><a href="{% url 'D02:about' %}">개요로 돌아가기</a></p>
     <hr/>
 
     <div class="row">
@@ -33,8 +33,8 @@
       {{ MeetingRoom.information | safe }}
     </div>
 
-    <a class="btn btn-primary" href="{% url 'E01:update' pk=MeetingRoom.id %}">수정</a>
-    <a class="btn btn-danger" href="{% url 'E01:delete' pk=MeetingRoom.id %}">삭제</a>
+    <a class="btn btn-primary" href="{% url 'D02:update' pk=MeetingRoom.id %}">수정</a>
+    <a class="btn btn-danger" href="{% url 'D02:delete' pk=MeetingRoom.id %}">삭제</a>
 
   </div>
 

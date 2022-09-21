@@ -30,7 +30,7 @@
   <body>
 
   <div class="container mt-5">
-    <form method="POST" action="{% url 'E01:modal-upload-file' %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'D02:modal-upload-file' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-3">
         <input name="files" class="form-control" type="file" multiple>
@@ -40,7 +40,7 @@
 
     <hr/>
 
-    <form method="POST" action="{% url 'E01:modal-list-file' %}">
+    <form method="POST" action="{% url 'D02:modal-list-file' %}">
       {% csrf_token %}
       <ul class="list-group mb-3">
         {% for o in objects %}
