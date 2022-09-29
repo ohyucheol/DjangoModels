@@ -28,7 +28,9 @@
 * 이용자 ID(user_id / IntegerField)
 * 유형(type / CharField)
 * 선택한 영화(collection / CharField)
-* 발행일(issue_date / DateField)
+
+* 채권발생원인(action_id / IntegerField)
+* 채권발생일(issue_date / DateField)
 * 기산일(start_date / DateField)
 * 만료일(end_date / DateField)
 
