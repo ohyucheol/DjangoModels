@@ -172,3 +172,24 @@ def modal_upload_file(request):
 
     else:
         return render(request, 'DjangoApps/templates/E01/modal-upload-file.html')
+
+@xframe_options_sameorigin
+def modal_list_file(request):
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket(settings.BUCKET)
+
+    if request.method == 'POST':
+        keys = request.POST.getlist('keys')
+        for k in keys:
+            response = bucket.delete_objects(Delete={'Objects':[ {'Key': k} ]})
+
+        # 버킷 내 특정 폴더(prefix)에 해당하는 파일만을 가져온다.
+        # 모든 파일을 가져올 필요가 있는 경우에는 objects = bucket.objects.all(),
+        # prefix를 추가할 필요가 있는 경우에는 objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/' + 'PREFIX2')
+        objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/')
+        return render(request, 'DjangoApps/templates/D02/modal-list-file.html', {'objects':objects})
+    else:
+        
+        objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/')
+
+        return render(request, 'DjangoApps/templates/D02/modal-list-file.html', {'objects':objects})
