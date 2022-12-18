@@ -16,12 +16,12 @@ from .forms import CreateUserForm, UpdateUsernameForm,UpdateEmailForm, \
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/A01/about.html"
+    template_name = "DjangoModels/templates/A01/about.html"
 
 class CreateUserView(CreateView):
     model = User
     form_class = CreateUserForm
-    template_name = 'DjangoApps/templates/A01/create-user.html'
+    template_name = 'DjangoModels/templates/A01/create-user.html'
     success_url = '/A01/'
 
     def form_invalid(self, form):
@@ -54,7 +54,7 @@ class CreateUserView(CreateView):
 
 class LoginUserView(LoginView):
     form_class = LoginUserForm
-    template_name = template_name = 'DjangoApps/templates/A01/login-user.html'
+    template_name = template_name = 'DjangoModels/templates/A01/login-user.html'
 
     def form_invalid(self, form):
         for f in self.form_class.Meta.fields:
@@ -70,10 +70,10 @@ class LoginUserView(LoginView):
 
 class LogoutUserView(LogoutView):
     form_class = LoginUserForm
-    template_name = 'DjangoApps/templates/A01/login-user.html'
+    template_name = 'DjangoModels/templates/A01/login-user.html'
 
 class MyPageView(TemplateView):
-    template_name = "DjangoApps/templates/A01/mypage.html"
+    template_name = "DjangoModels/templates/A01/mypage.html"
 
     def get_context_data(self, **kwargs):
         page_owner = User.objects.get(username=kwargs['username'])
@@ -86,7 +86,7 @@ class UpdateUsernameView(UpdateView):
     model = User
     form_class = UpdateUsernameForm
     initial = {'username' : ''}
-    template_name = "DjangoApps/templates/A01/update-username.html"
+    template_name = "DjangoModels/templates/A01/update-username.html"
     success_url = '/A01/'
 
     def form_invalid(self, form):
@@ -103,7 +103,7 @@ class UpdateEmailView(UpdateView):
     model = User
     form_class = UpdateEmailForm
     initial = {'email' : ''}
-    template_name = "DjangoApps/templates/A01/update-email.html"
+    template_name = "DjangoModels/templates/A01/update-email.html"
     success_url = '/A01/'
 
     def form_invalid(self, form):
@@ -119,7 +119,7 @@ class UpdateEmailView(UpdateView):
 class UpdatePasswordView(UpdateView):
     model = User
     form_class = UpdatePasswordForm
-    template_name = 'DjangoApps/templates/A01/update-password.html'
+    template_name = 'DjangoModels/templates/A01/update-password.html'
     success_url = '/A01/'
 
     def form_invalid(self, form):
@@ -153,7 +153,7 @@ class UpdatePasswordView(UpdateView):
 
 class UpdateBannedKeywordView(FormView):
     form_class = UpdateBannedKeywordForm
-    template_name = 'DjangoApps/templates/A01/update-banned-keyword.html'
+    template_name = 'DjangoModels/templates/A01/update-banned-keyword.html'
     success_url = '/A01/update-banned-keyword'
 
     def get_initial(self):

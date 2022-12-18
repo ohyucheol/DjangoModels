@@ -10,13 +10,13 @@ from .forms import ComicBookModelForm
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/D01/about.html"
+    template_name = "DjangoModels/templates/D01/about.html"
 
 class ListComicBookView(ListView):
     model = ComicBook
     paginate_by = 4
     context_object_name = 'ComicBook'
-    template_name = 'DjangoApps/templates/D01/list-comicbook.html'
+    template_name = 'DjangoModels/templates/D01/list-comicbook.html'
 
     def get_queryset(self):
 
@@ -35,7 +35,7 @@ class ListComicBookView(ListView):
 class CreateComicBookView(CreateView):
     model = ComicBook
     form_class = ComicBookModelForm
-    template_name = 'DjangoApps/templates/D01/create-comicbook.html'
+    template_name = 'DjangoModels/templates/D01/create-comicbook.html'
     success_url = '/D01/list/'
 
     def form_invalid(self, form):
@@ -67,7 +67,7 @@ class CreateComicBookView(CreateView):
 class UpdateComicBookView(UpdateView):
     model = ComicBook
     form_class = ComicBookModelForm
-    template_name = 'DjangoApps/templates/D01/update-comicbook.html'
+    template_name = 'DjangoModels/templates/D01/update-comicbook.html'
     success_url = '/D01/list'
 
     def form_invalid(self, form):
@@ -96,7 +96,7 @@ class UpdateComicBookView(UpdateView):
 
 class DeleteComicBookView(DeleteView):
     model = ComicBook
-    template_name = 'DjangoApps/templates/D01/delete-comicbook.html'
+    template_name = 'DjangoModels/templates/D01/delete-comicbook.html'
     success_url = '/D01/list/'
 
     # def get_queryset(self):

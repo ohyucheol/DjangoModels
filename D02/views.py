@@ -12,23 +12,23 @@ from .forms import MeetingRoomModelForm
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/D02/about.html"
+    template_name = "DjangoModels/templates/D02/about.html"
 
 class ListMeetingRoomView(ListView):
     model = MeetingRoom
     paginate_by = 12
     context_object_name = 'MeetingRoom'
-    template_name = 'DjangoApps/templates/D02/list-meetingroom.html'
+    template_name = 'DjangoModels/templates/D02/list-meetingroom.html'
 
 class DetailMeetingRoomView(DetailView):
     model = MeetingRoom
     context_object_name = 'MeetingRoom'
-    template_name = 'DjangoApps/templates/D02/detail-meetingroom.html'
+    template_name = 'DjangoModels/templates/D02/detail-meetingroom.html'
 
 class CreateMeetingRoomView(CreateView):
     model = MeetingRoom
     form_class = MeetingRoomModelForm
-    template_name = 'DjangoApps/templates/D02/create-meetingroom.html'
+    template_name = 'DjangoModels/templates/D02/create-meetingroom.html'
     success_url = '/D02/list/'
 
     def form_invalid(self, form):
@@ -60,7 +60,7 @@ class CreateMeetingRoomView(CreateView):
 class UpdateMeetingRoomView(UpdateView):
     model = MeetingRoom
     form_class = MeetingRoomModelForm
-    template_name = 'DjangoApps/templates/D02/update-meetingroom.html'
+    template_name = 'DjangoModels/templates/D02/update-meetingroom.html'
     success_url = '/D02/list/'
 
     def form_invalid(self, form):
@@ -89,7 +89,7 @@ class UpdateMeetingRoomView(UpdateView):
 
 class DeleteMeetingRoomView(DeleteView):
     model = MeetingRoom
-    template_name = 'DjangoApps/templates/D02/delete-meetingroom.html'
+    template_name = 'DjangoModels/templates/D02/delete-meetingroom.html'
     success_url = '/D02/list/'
 
 # 이하는 tinyMCE에서의 AWS S3 파일 관리를 위한 함수
@@ -109,12 +109,12 @@ def modal_list_file(request):
         # 모든 파일을 가져올 필요가 있는 경우에는 objects = bucket.objects.all(),
         # prefix를 추가할 필요가 있는 경우에는 objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/' + 'PREFIX2')
         objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/')
-        return render(request, 'DjangoApps/templates/D02/modal-list-file.html', {'objects':objects})
+        return render(request, 'DjangoModels/templates/D02/modal-list-file.html', {'objects':objects})
     else:
         
         objects = bucket.objects.filter(Prefix=settings.PREFIX_D02 + '/')
 
-        return render(request, 'DjangoApps/templates/D02/modal-list-file.html', {'objects':objects})
+        return render(request, 'DjangoModels/templates/D02/modal-list-file.html', {'objects':objects})
 
 # AWS S3 파일 업로드를 위한 함수
 @xframe_options_sameorigin
@@ -130,4 +130,4 @@ def modal_upload_file(request):
         return redirect('/D02/modal-list-file/')
 
     else:
-        return render(request, 'DjangoApps/templates/D02/modal-upload-file.html')
+        return render(request, 'DjangoModels/templates/D02/modal-upload-file.html')

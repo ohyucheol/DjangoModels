@@ -17,11 +17,11 @@ from .forms import CheckBusinessRegistrationNumberForm, CheckBusinessInformation
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/B01/about.html"
+    template_name = "DjangoModels/templates/B01/about.html"
 
 class CheckBusinessRegistrationNumberView(FormView):
     form_class = CheckBusinessRegistrationNumberForm
-    template_name = 'DjangoApps/templates/B01/check-business-registration-number.html'
+    template_name = 'DjangoModels/templates/B01/check-business-registration-number.html'
     success_url = '/B01/check-business-information'
 
     def form_invalid(self, form):
@@ -45,7 +45,7 @@ class CheckBusinessRegistrationNumberView(FormView):
 
 class CheckBusinessInformationView(FormView):
     form_class = CheckBusinessInformationForm
-    template_name = 'DjangoApps/templates/B01/check-business-information.html'
+    template_name = 'DjangoModels/templates/B01/check-business-information.html'
     success_url = '/B01/create'
 
     def get_initial(self):
@@ -86,7 +86,7 @@ class CheckBusinessInformationView(FormView):
 class CreateUserView(CreateView):
     model = User
     form_class = CreateUserForm
-    template_name = 'DjangoApps/templates/B01/create-user.html'
+    template_name = 'DjangoModels/templates/B01/create-user.html'
     success_url = '/B01/'
 
     def form_invalid(self, form):
@@ -112,7 +112,7 @@ class CreateUserView(CreateView):
 
 class LoginUserView(LoginView):
     form_class = LoginUserForm
-    template_name = template_name = 'DjangoApps/templates/B01/login-user.html'
+    template_name = template_name = 'DjangoModels/templates/B01/login-user.html'
 
     def form_invalid(self, form):
         for f in self.form_class.Meta.fields:
@@ -128,10 +128,10 @@ class LoginUserView(LoginView):
 
 class LogoutUserView(LogoutView):
     form_class = LoginUserForm
-    template_name = 'DjangoApps/templates/B01/login-user.html'
+    template_name = 'DjangoModels/templates/B01/login-user.html'
 
 class MyPageView(TemplateView):
-    template_name = "DjangoApps/templates/B01/mypage.html"
+    template_name = "DjangoModels/templates/B01/mypage.html"
 
     def get_context_data(self, **kwargs):
         page_owner = User.objects.get(username=kwargs['username'])
@@ -144,7 +144,7 @@ class UpdateUsernameView(UpdateView):
     model = User
     form_class = UpdateUsernameForm
     initial = {'username' : ''}
-    template_name = "DjangoApps/templates/B01/update-username.html"
+    template_name = "DjangoModels/templates/B01/update-username.html"
     success_url = '/B01/'
 
     def form_invalid(self, form):
@@ -161,7 +161,7 @@ class UpdateEmailView(UpdateView):
     model = User
     form_class = UpdateEmailForm
     initial = {'email' : ''}
-    template_name = "DjangoApps/templates/B01/update-email.html"
+    template_name = "DjangoModels/templates/B01/update-email.html"
     success_url = '/B01/'
 
     def form_invalid(self, form):
@@ -177,7 +177,7 @@ class UpdateEmailView(UpdateView):
 class UpdatePasswordView(UpdateView):
     model = User
     form_class = UpdatePasswordForm
-    template_name = 'DjangoApps/templates/B01/update-password.html'
+    template_name = 'DjangoModels/templates/B01/update-password.html'
     success_url = '/B01/'
 
     def form_invalid(self, form):

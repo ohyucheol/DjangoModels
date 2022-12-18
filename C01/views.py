@@ -11,23 +11,23 @@ from .forms import NovelWriterModelForm
 # Create your views here.
 
 class About(TemplateView):
-    template_name = "DjangoApps/templates/C01/about.html"
+    template_name = "DjangoModels/templates/C01/about.html"
 
 class ListNovelWriterView(ListView):
     model = NovelWriter
     paginate_by = 12
     context_object_name = 'writer'
-    template_name = 'DjangoApps/templates/C01/list-writer.html'
+    template_name = 'DjangoModels/templates/C01/list-writer.html'
 
 class DetailNovelWriterView(DetailView):
     model = NovelWriter
     context_object_name = 'writer'
-    template_name = 'DjangoApps/templates/C01/detail-writer.html'
+    template_name = 'DjangoModels/templates/C01/detail-writer.html'
 
 class CreateNovelWriterView(CreateView):
     model = NovelWriter
     form_class = NovelWriterModelForm
-    template_name = 'DjangoApps/templates/C01/create-writer.html'
+    template_name = 'DjangoModels/templates/C01/create-writer.html'
     success_url = '/C01/list/'
 
     def form_invalid(self, form):
@@ -61,7 +61,7 @@ class CreateNovelWriterView(CreateView):
 class UpdateNovelWriterView(UpdateView):
     model = NovelWriter
     form_class = NovelWriterModelForm
-    template_name = 'DjangoApps/templates/C01/update-writer.html'
+    template_name = 'DjangoModels/templates/C01/update-writer.html'
     success_url = '/C01/list/'
 
     def form_invalid(self, form):
@@ -89,5 +89,5 @@ class UpdateNovelWriterView(UpdateView):
 
 class DeleteNovelWriterView(DeleteView):
     model = NovelWriter
-    template_name = 'DjangoApps/templates/C01/delete-writer.html'
+    template_name = 'DjangoModels/templates/C01/delete-writer.html'
     success_url = '/C01/list/'
